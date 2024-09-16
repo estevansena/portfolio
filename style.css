@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.background {
+    background-image: url(background.png);
+    background-color: black;
+    background-size: contain;
+    background-position: left;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+nav {
+    position: relative;
+    /* Permite posicionar o ul de forma absoluta */
+    display: flex;
+    align-items: center;
+    padding: 45px;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+nav ul {
+    position: absolute;
+    /* Posiciona o ul de forma absoluta */
+    left: 50%;
+    /* Move o ul 50% da largura do container */
+    transform: translateX(-50%);
+    /* Centraliza o ul */
+    display: flex;
+    justify-content: center;
+}
+
+nav h2 {
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+.nomeroxo {
+    color: blueviolet;
+}
+
+.nomeroxo:hover {
+    color: #ffff;
+}
+
+nav ul li {
+    padding: 10px 25px;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+nav ul li a:hover {
+    color: blueviolet;
+    transform: scale(1.2);
+}
+
+.btn:hover {
+    transform: scale(1.2);
+}
+
+.main {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateY(-50);
+}
+
+h4 {
+    color: white;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+h1 {
+    color: white;
+    margin: 20px 0px 20px;
+    font-size: 75px;
+}
+
+h3 {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.apresentacao {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    white-space: pre-wrap; /* Mantém quebras de linha */
+}
