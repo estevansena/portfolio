@@ -30,7 +30,7 @@ document.addEventListener('mousemove', () => {
 
 // Adicionando o som de seleção em cada item do menu
 document.querySelectorAll('nav ul li').forEach(item => {
-    item.addEventListener('mouseover', () => {
+    item.addEventListener('mouseenter', () => {
         // Somente toca o som se o mouse tiver se movido desde o carregamento da página
         if (hasMouseMoved) {
             soundSelect.currentTime = 0; // Reinicia o som desde o início
@@ -38,8 +38,5 @@ document.querySelectorAll('nav ul li').forEach(item => {
         }
     });
 });
-
-
-
 
 
