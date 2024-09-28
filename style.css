@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden; /* Remove barra de rolagem em todo o body */
+
 }
 
 @font-face {
@@ -29,8 +31,41 @@
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
-    position: absolute;    /* Posiciona a imagem dentro do fundo preto */
-}
+    overflow: hidden;    /* Impede que o conteúdo transborde */
+    position: absolute;  /* Posiciona a imagem dentro do fundo preto */
+    animation:fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
+  }
+  
+  /* Definição da animação de balanço */
+  @keyframes balancar {
+    0% {
+      transform: translateX(0px);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(0px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  
+  /* Definição da animação de fade-in */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0; /* Começa invisível */
+    }
+    100% {
+      opacity: 1; /* Torna-se totalmente visível */
+    }
+  }
+  
+  
 
 #image-background-sobre {
     background-image: url(./imagens/backgroundsobre.png); 
@@ -88,7 +123,7 @@ nav h2 {
 
 .nomeroxo:hover {
     
-    color: blueviolet;
+    color: purple;
 }
 
 
@@ -102,7 +137,7 @@ nav ul li {
 nav ul li::before {
     content: "👉"; /* Símbolo da mãozinha */
     position: absolute;
-    left: 5px; /* Mãozinha ficará à esquerda */
+    left: 10px; /* Mãozinha ficará à esquerda */
     opacity: 0; /* Inicialmente invisível */
     transition: transform 0.2s ease, opacity 0.3s ease; /* Transição suave */
 }
@@ -132,7 +167,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: blueviolet;
+    color: purple;
     transform: scale(1.2);
 }
 
@@ -140,9 +175,23 @@ nav ul li a:hover {
     transform: scale(1.2);
 }
 
+.inventário {
+    display: flex; /* Coloca os quadrados na horizontal */
+    gap: 5px; /* Espaçamento entre os quadrados */
+    position: absolute; /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
+    top: 20px; /* Alinhado ao topo */
+    right: 20px; /* Mais próximo à direita */
+  }
+  
+  .quadrado {
+    width: 50px; /* Largura dos quadrados */
+    height: 50px; /* Altura dos quadrados */
+    background-color: black; /* Fundo preto */
+    border: 1px solid purple; /* Borda roxa */
+  }
 
 .main {
-    position: absolute;  
+    position:fixed;
     top: 10%;              /* Mantém a posição do topo */
     left: 50%;             /* Centraliza horizontalmente */
     transform: translateX(-50%);  /* Remove o translateY */
@@ -158,6 +207,8 @@ nav ul li a:hover {
             font-size: 75px;
             font-family: 'GAMERIA', sans-serif;
             -webkit-text-stroke: 1px black; /* Adiciona um contorno sólido preto de 5px */
+            animation: balancar 5s ease-in-out infinite, fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
+
         }
 
         h3 {
