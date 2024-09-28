@@ -2,11 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
+@font-face {
+    font-family: 'Gameplay';
+    src: url('fonts/Gameplay.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GAMERIA';
+    src: url('fonts/GAMERIA.ttf') format('truetype');
+}
+
+
 .background {
-    background-image: url(background.png);
     background-color: black;
     background-size: contain;
     background-position: left;
@@ -14,6 +23,34 @@
     background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
+}
+
+#background-index {
+    background-image: url(./imagens/background.png); 
+}
+
+#background-index:hover {
+
+}
+
+#background-sobre {
+    background-image: url(./imagens/backgroundsobre.png); 
+}
+
+#background-projetos {
+    background-image: url(./imagens/backgroundprojetos.png); 
+}
+
+#ackground-habilidades {
+    background-image: url(./imagens/backgroundhabilidades.png); 
+}
+
+#background-cursos {
+    background-image: url(./imagens/backgroundcursos.png); 
+}
+
+#background-contato {
+    background-image: url(./imagens/backgroundcontato.png);
 }
 
 nav {
@@ -38,10 +75,12 @@ nav ul {
 }
 
 nav h2 {
-    color: white;
+    color: rgb(233, 182, 43);
     font-size: 35px;
     cursor: pointer;
     letter-spacing: 2px;
+    font-family: 'GAMERIA', sans-serif;
+    text-shadow: 3px 3px 5px black;
 }
 
 .nomeroxo {
@@ -49,19 +88,46 @@ nav h2 {
 }
 
 .nomeroxo:hover {
-    color: #ffff;
+    color: rgb(233, 182, 43);
 }
 
 nav ul li {
     padding: 10px 25px;
     list-style: none;
+    cursor: pointer;
+    position: relative; /* Necessário para o posicionamento do ::before */
 }
 
+nav ul li::before {
+    content: "👉"; /* Símbolo da mãozinha */
+    position: absolute;
+    left: 5px; /* Mãozinha ficará à esquerda */
+    opacity: 0; /* Inicialmente invisível */
+    transition: transform 0.2s ease, opacity 0.3s ease; /* Transição suave */
+}
+
+nav ul li:hover::before {
+    opacity: 1; /* Torna a mão visível no hover */
+    animation: wave 0.4s ease infinite; /* Animação da mãozinha */
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(-15px);
+    }
+}
+
+
 nav ul li a {
-    color: white;
+    color: rgb(233, 182, 43);
     text-decoration: none;
-    font-weight: bold;
+    font-size:x-large;
     text-transform: capitalize;
+    font-family: 'GAMERIA', sans-serif;
+    text-shadow: 6px 6px 6px black;
 }
 
 nav ul li a:hover {
@@ -87,15 +153,19 @@ h4 {
 }
 
 h1 {
-    color: white;
+    color: rgb(233, 182, 43);
     margin: 20px 0px 20px;
     font-size: 75px;
+    font-family: 'GAMERIA', sans-serif;
+    text-shadow: 6px 6px 6px black;
+
 }
 
 h3 {
     color: white;
     font-size: 25px;
     margin-bottom: 50px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .apresentacao {
