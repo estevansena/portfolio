@@ -17,39 +17,38 @@
 
 .background {
     background-color: black;
-    background-size: contain;
-    background-position: left;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
+    position: relative; /* Torna o fundo pai para posicionar a imagem no centro */
 }
 
-#background-index {
+#image-background-inicio {
     background-image: url(./imagens/background.png); 
+    background-size: 20%;
+    background-position: center 200px;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;    /* Posiciona a imagem dentro do fundo preto */
 }
 
-#background-index:hover {
-
-}
-
-#background-sobre {
+#image-background-sobre {
     background-image: url(./imagens/backgroundsobre.png); 
 }
 
-#background-projetos {
+#image-background-projetos {
     background-image: url(./imagens/backgroundprojetos.png); 
 }
 
-#ackground-habilidades {
+#image-background-habilidades {
     background-image: url(./imagens/backgroundhabilidades.png); 
 }
 
-#background-cursos {
+#image-background-cursos {
     background-image: url(./imagens/backgroundcursos.png); 
 }
 
-#background-contato {
+#image-background-contato {
     background-image: url(./imagens/backgroundcontato.png);
 }
 
@@ -84,12 +83,14 @@ nav h2 {
 }
 
 .nomeroxo {
-    color: blueviolet;
+    color: rgb(233, 182, 43);
 }
 
 .nomeroxo:hover {
-    color: rgb(233, 182, 43);
+    
+    color: blueviolet;
 }
+
 
 nav ul li {
     padding: 10px 25px;
