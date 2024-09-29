@@ -224,3 +224,49 @@ nav ul li a:hover {
     font-size: 24px;
     white-space: pre-wrap; /* Mantém quebras de linha */
 }
+
+.cursores {
+    display: flex; /* Coloca os quadrados na horizontal */
+    gap: 5px; /* Espaçamento entre os quadrados */
+    position: absolute; /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
+    top: 20px; /* Alinhado ao topo */
+    right: 20px; /* Mais próximo à direita */
+}
+
+.cursores div {
+    width: 50px; /* Largura de cada quadrado */
+    height: 50px; /* Altura de cada quadrado */
+    background-size: cover; /* Faz a imagem ocupar todo o espaço da div */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    filter: grayscale(100%); /* Aplica o efeito preto e branco */
+    transition: filter 0.5s ease; /* Transição suave ao mudar o filtro */
+    cursor: pointer; /* Mostra que é clicável */
+}
+
+#espada1 {
+    background-image: url('./cursors/espada1.png');
+}
+
+#espada2 {
+    background-image: url('./cursors/espada2.png');
+}
+
+#espada3 {
+    background-image: url('./cursors/espada3.png');
+}
+
+#espada4 {
+    background-image: url('./cursors/espada4.png');
+}
+
+#espada5 {
+    background-image: url('./cursors/espada5.png');
+}
+
+#espada6 {
+    background-image: url('./cursors/espada6.png');
+}
+
+.cursores div.clicked {
+    filter: grayscale(0%); /* Remove o efeito preto e branco após o clique */
+}

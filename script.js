@@ -39,4 +39,21 @@ document.querySelectorAll('nav ul li').forEach(item => {
     });
 });
 
+//Altera o cursos ao clicar no inventário 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const espadas = document.querySelectorAll('.cursores div');
+
+    espadas.forEach((espada, index) => {
+        espada.addEventListener('click', function () {
+            // Remover o efeito grayscale da espada clicada
+            espadas.forEach(e => e.classList.remove('clicked')); // Remove o efeito das outras espadas
+            this.classList.add('clicked'); // Adiciona o efeito na espada clicada
+
+            // Alterar o cursor para a espada correspondente
+            const cursorUrl = `./cursors/espada${index + 1}.png`; // Presume que você tenha o arquivo .cur para cada espada
+            document.body.style.cursor = `url(${cursorUrl}), auto`;
+        });
+    });
+});
 
