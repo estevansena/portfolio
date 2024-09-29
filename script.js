@@ -12,7 +12,7 @@ function digitarTexto() {
             elemento.innerHTML += '<br>'; // Adiciona <br> para quebras de linha
         }
         index++;
-        setTimeout(digitarTexto, 100); // Ajuste a velocidade aqui
+        setTimeout(digitarTexto, 85); // Ajuste a velocidade aqui
     }
 }
 

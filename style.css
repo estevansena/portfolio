@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     overflow: hidden; /* Remove barra de rolagem em todo o body */
-
 }
 
 @font-face {
