@@ -39,21 +39,33 @@ document.querySelectorAll('nav ul li').forEach(item => {
     });
 });
 
-//Altera o cursos ao clicar no inventário 
-
+// Interações com a espada selecionada no inventário
 document.addEventListener("DOMContentLoaded", function () {
     const espadas = document.querySelectorAll('.cursores div');
+
+    // Verificar se há uma espada salva no localStorage
+    const espadaSalva = localStorage.getItem('espadaSelecionada');
+    if (espadaSalva) {
+        const espadaIndex = parseInt(espadaSalva, 10);
+        espadas[espadaIndex].classList.add('clicked');
+        const cursorUrl = `./cursors/espada${espadaIndex + 1}.png`;
+        document.body.style.cursor = `url(${cursorUrl}), auto`;
+    }
 
     espadas.forEach((espada, index) => {
         espada.addEventListener('click', function () {
             // Remover o efeito grayscale da espada clicada
-            espadas.forEach(e => e.classList.remove('clicked')); // Remove o efeito das outras espadas
-            this.classList.add('clicked'); // Adiciona o efeito na espada clicada
+            espadas.forEach(e => e.classList.remove('clicked'));
+            this.classList.add('clicked');
 
             // Alterar o cursor para a espada correspondente
-            const cursorUrl = `./cursors/espada${index + 1}.png`; // Presume que você tenha o arquivo .cur para cada espada
+            const cursorUrl = `./cursors/espada${index + 1}.png`;
             document.body.style.cursor = `url(${cursorUrl}), auto`;
+
+            // Salvar a espada selecionada no localStorage
+            localStorage.setItem('espadaSelecionada', index);
         });
     });
 });
+
 
