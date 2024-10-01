@@ -15,6 +15,15 @@
     src: url('fonts/GAMERIA.ttf') format('truetype');
 }
 
+.background-index {
+    background-color: black;
+    height: 100vh; /* Faz com que a div ocupe 100% da altura da janela */
+    width: 100vw;  /* Faz com que a div ocupe 100% da largura da janela */
+    position: absolute; /* Garante que a div cubra a tela */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Coloca a div atrás de outros elementos */
+}
 
 .background {
     background-image: url(./imagens/background.png);
