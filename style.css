@@ -17,6 +17,7 @@
 
 
 .background {
+    background-image: url(./imagens/background.png);
     background-color: black;
     height: 100vh;
     width: 100%;
@@ -24,10 +25,11 @@
     top: 0;
     left: 0;
     z-index: 1; /* Garante que o fundo fique atrás do texto */
+    background-size: 100%;
 }
 
 #image-background-inicio {
-    background-image: url(./imagens/background.png); 
+    background-image: url(./imagens/euespada.png); 
     background-size: 20%;
     background-position: center 200px;
     background-repeat: no-repeat;
@@ -38,24 +40,19 @@
     animation:fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
   }
   
-  /* Definição da animação de balanço */
-  @keyframes balancar {
+/* Definição da animação de balanço */
+@keyframes balancar {
     0% {
-      transform: translateX(0px);
-    }
-    25% {
-      transform: translateX(-5px);
+      transform: translateX(-15px); /* Começa do lado esquerdo */
     }
     50% {
-      transform: translateX(0px);
-    }
-    75% {
-      transform: translateX(5px);
+      transform: translateX(15px); /* Vai para o lado direito */
     }
     100% {
-      transform: translateX(0px);
+      transform: translateX(-15px); /* Volta para o lado esquerdo */
     }
   }
+  
   
   /* Definição da animação de fade-in */
   @keyframes fadeIn {
@@ -66,8 +63,6 @@
       opacity: 1; /* Torna-se totalmente visível */
     }
   }
-  
-  
 
 #image-background-sobre {
     background-image: url(./imagens/backgroundsobre.png); 
@@ -200,7 +195,9 @@ nav ul li a:hover {
     display: flex;             
     flex-direction: column;    
     justify-content: center;   
-    align-items: center;       
+    align-items: center;  
+    overflow: visible; /* Evita corte do conteúdo do contêiner */
+     
 }
 
         h1 {
@@ -210,6 +207,7 @@ nav ul li a:hover {
             font-family: 'GAMERIA', sans-serif;
             -webkit-text-stroke: 1px black; /* Adiciona um contorno sólido preto de 5px */
             animation: balancar 5s ease-in-out infinite, fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
+            text-shadow: 6px 6px 6px black;
 
         }
 
