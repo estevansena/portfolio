@@ -20,6 +20,8 @@ window.onload = digitarTexto;
 
 // Som de seleção (ao passar o mouse)
 const soundSelect = new Audio('./sounds/select.mp3'); // Som ao passar o mouse
+soundSelect.volume = 0.2; // Define o volume para 50% (ajuste este valor conforme necessário)
+
 
 let hasMouseMoved = false; // Flag para rastrear se o mouse já passou sobre um item
 
