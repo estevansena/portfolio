@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden; /* Remove barra de rolagem em todo o body */
+    overflow: hidden;
+    /* Remove barra de rolagem em todo o body */
 }
 
 @font-face {
@@ -17,12 +18,16 @@
 
 .background-index {
     background-color: black;
-    height: 100vh; /* Faz com que a div ocupe 100% da altura da janela */
-    width: 100vw;  /* Faz com que a div ocupe 100% da largura da janela */
-    position: absolute; /* Garante que a div cubra a tela */
+    height: 100vh;
+    /* Faz com que a div ocupe 100% da altura da janela */
+    width: 100vw;
+    /* Faz com que a div ocupe 100% da largura da janela */
+    position: absolute;
+    /* Garante que a div cubra a tela */
     top: 0;
     left: 0;
-    z-index: -1; /* Coloca a div atrás de outros elementos */
+    z-index: -1;
+    /* Coloca a div atrás de outros elementos */
 }
 
 .background {
@@ -33,60 +38,72 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1; /* Garante que o fundo fique atrás do texto */
+    z-index: 1;
+    /* Garante que o fundo fique atrás do texto */
     background-size: 100%;
 }
 
 #image-background-inicio {
-    background-image: url(./imagens/euespada.png); 
+    background-image: url(./imagens/euespada.png);
     background-size: 20%;
     background-position: center 200px;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
-    overflow: hidden;    /* Impede que o conteúdo transborde */
-    position: absolute;  /* Posiciona a imagem dentro do fundo preto */
-    animation:fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
-  }
-  
+    overflow: hidden;
+    /* Impede que o conteúdo transborde */
+    position: absolute;
+    /* Posiciona a imagem dentro do fundo preto */
+    animation: fadeIn 2s forwards;
+    /* Aplica animações de balanço e fade-in */
+}
+
 /* Definição da animação de balanço */
 @keyframes balancar {
     0% {
-      transform: translateX(-15px); /* Começa do lado esquerdo */
+        transform: translateX(-15px);
+        /* Começa do lado esquerdo */
     }
+
     50% {
-      transform: translateX(15px); /* Vai para o lado direito */
+        transform: translateX(15px);
+        /* Vai para o lado direito */
     }
+
     100% {
-      transform: translateX(-15px); /* Volta para o lado esquerdo */
+        transform: translateX(-15px);
+        /* Volta para o lado esquerdo */
     }
-  }
-  
-  
-  /* Definição da animação de fade-in */
-  @keyframes fadeIn {
+}
+
+
+/* Definição da animação de fade-in */
+@keyframes fadeIn {
     0% {
-      opacity: 0; /* Começa invisível */
+        opacity: 0;
+        /* Começa invisível */
     }
+
     100% {
-      opacity: 1; /* Torna-se totalmente visível */
+        opacity: 1;
+        /* Torna-se totalmente visível */
     }
-  }
+}
 
 #image-background-sobre {
-    background-image: url(./imagens/backgroundsobre.png); 
+    background-image: url(./imagens/backgroundsobre.png);
 }
 
 #image-background-projetos {
-    background-image: url(./imagens/backgroundprojetos.png); 
+    background-image: url(./imagens/backgroundprojetos.png);
 }
 
 #image-background-habilidades {
-    background-image: url(./imagens/backgroundhabilidades.png); 
+    background-image: url(./imagens/backgroundhabilidades.png);
 }
 
 #image-background-cursos {
-    background-image: url(./imagens/backgroundcursos.png); 
+    background-image: url(./imagens/backgroundcursos.png);
 }
 
 #image-background-contato {
@@ -128,7 +145,7 @@ nav h2 {
 }
 
 .nomeroxo:hover {
-    
+
     color: purple;
 }
 
@@ -137,26 +154,36 @@ nav ul li {
     padding: 10px 25px;
     list-style: none;
     cursor: pointer;
-    position: relative; /* Necessário para o posicionamento do ::before */
+    position: relative;
+    /* Necessário para o posicionamento do ::before */
 }
 
 nav ul li::before {
-    content: "👉"; /* Símbolo da mãozinha */
+    content: "👉";
+    /* Símbolo da mãozinha */
     position: absolute;
-    left: 10px; /* Mãozinha ficará à esquerda */
-    opacity: 0; /* Inicialmente invisível */
-    transition: transform 0.2s ease, opacity 0.3s ease; /* Transição suave */
+    left: 10px;
+    /* Mãozinha ficará à esquerda */
+    opacity: 0;
+    /* Inicialmente invisível */
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    /* Transição suave */
 }
 
 nav ul li:hover::before {
-    opacity: 1; /* Torna a mão visível no hover */
-    animation: wave 0.4s ease infinite; /* Animação da mãozinha */
+    opacity: 1;
+    /* Torna a mão visível no hover */
+    animation: wave 0.4s ease infinite;
+    /* Animação da mãozinha */
 }
 
 @keyframes wave {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(-10px);
     }
+
     50% {
         transform: translateX(-15px);
     }
@@ -166,7 +193,7 @@ nav ul li:hover::before {
 nav ul li a {
     color: rgb(233, 182, 43);
     text-decoration: none;
-    font-size:x-large;
+    font-size: x-large;
     text-transform: capitalize;
     font-family: 'GAMERIA', sans-serif;
     text-shadow: 6px 6px 6px black;
@@ -182,74 +209,138 @@ nav ul li a:hover {
 }
 
 .inventário {
-    display: flex; /* Coloca os quadrados na horizontal */
-    gap: 5px; /* Espaçamento entre os quadrados */
-    position: absolute; /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
-    top: 20px; /* Alinhado ao topo */
-    right: 20px; /* Mais próximo à direita */
-  }
-  
-  .quadrado {
-    width: 50px; /* Largura dos quadrados */
-    height: 50px; /* Altura dos quadrados */
-    background-color: black; /* Fundo preto */
-    border: 1px solid purple; /* Borda roxa */
-  }
-
-.main {
-    position:fixed;
-    top: 10%;              /* Mantém a posição do topo */
-    left: 50%;             /* Centraliza horizontalmente */
-    transform: translateX(-50%);  /* Remove o translateY */
-    display: flex;             
-    flex-direction: column;    
-    justify-content: center;   
-    align-items: center;  
-    overflow: visible; /* Evita corte do conteúdo do contêiner */
-     
+    display: flex;
+    /* Coloca os quadrados na horizontal */
+    gap: 5px;
+    /* Espaçamento entre os quadrados */
+    position: absolute;
+    /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
+    top: 20px;
+    /* Alinhado ao topo */
+    right: 20px;
+    /* Mais próximo à direita */
 }
 
-        h1 {
-            color: rgb(233, 182, 43);
-            margin: 25px 0px;         
-            font-size: 75px;
-            font-family: 'GAMERIA', sans-serif;
-            -webkit-text-stroke: 1px black; /* Adiciona um contorno sólido preto de 5px */
-            animation: balancar 5s ease-in-out infinite, fadeIn 2s forwards; /* Aplica animações de balanço e fade-in */
-            text-shadow: 6px 6px 6px black;
+/* Ajuste para telas menores */
+@media (max-width: 1530px) {
+    .inventário,
+    .cursores {
+        display: flex;
+        flex-direction: column; /* Alinha os quadrados na vertical */
+        gap: 5px; /* Espaçamento entre os quadrados */
+        align-items: center; /* Centraliza os itens na vertical */
+        transform: translateY(50%); /* Remova a centralização vertical */
+        margin-top: -50px; /* Espaço superior para separar dos elementos acima */
+    }
+}
 
-        }
+@media (max-width: 1804px) {
+   
+}
 
-        h3 {
-            color: white;
-            font-size: 25px;
-            margin-bottom: 20px; 
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
+
+.cursores div {
+    width: 50px;
+    /* Largura de cada quadrado */
+    height: 50px;
+    /* Altura de cada quadrado */
+    background-size: cover;
+    /* Faz a imagem ocupar todo o espaço da div */
+    background-repeat: no-repeat;
+    /* Impede que a imagem se repita */
+    filter: grayscale(100%);
+    /* Aplica o efeito preto e branco */
+    transition: filter 0.5s ease;
+    /* Transição suave ao mudar o filtro */
+    cursor: pointer;
+    /* Mostra que é clicável */
+}
+
+
+.quadrado {
+    width: 50px;
+    /* Largura dos quadrados */
+    height: 50px;
+    /* Altura dos quadrados */
+    background-color: black;
+    /* Fundo preto */
+    border: 1px solid purple;
+    /* Borda roxa */
+}
+
+.main {
+    position: fixed;
+    top: 10%;
+    /* Mantém a posição do topo */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    /* Remove o translateY */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    /* Evita corte do conteúdo do contêiner */
+
+}
+
+h1 {
+    color: rgb(233, 182, 43);
+    margin: 25px 0px;
+    font-size: 75px;
+    font-family: 'GAMERIA', sans-serif;
+    -webkit-text-stroke: 1px black;
+    /* Adiciona um contorno sólido preto de 5px */
+    animation: balancar 5s ease-in-out infinite, fadeIn 2s forwards;
+    /* Aplica animações de balanço e fade-in */
+    text-shadow: 6px 6px 6px black;
+
+}
+
+h3 {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .apresentacao {
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
-    white-space: pre-wrap; /* Mantém quebras de linha */
+    white-space: pre-wrap;
+    /* Mantém quebras de linha */
 }
 
 .cursores {
-    display: flex; /* Coloca os quadrados na horizontal */
-    gap: 5px; /* Espaçamento entre os quadrados */
-    position: absolute; /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
-    top: 20px; /* Alinhado ao topo */
-    right: 20px; /* Mais próximo à direita */
+    display: flex;
+    /* Coloca os quadrados na horizontal */
+    gap: 5px;
+    /* Espaçamento entre os quadrados */
+    position: absolute;
+    /* Posicionamento absoluto em relação ao elemento pai mais próximo com position */
+    top: 20px;
+    /* Alinhado ao topo */
+    right: 20px;
+    /* Mais próximo à direita */
 }
 
 .cursores div {
-    width: 50px; /* Largura de cada quadrado */
-    height: 50px; /* Altura de cada quadrado */
-    background-size: cover; /* Faz a imagem ocupar todo o espaço da div */
-    background-repeat: no-repeat; /* Impede que a imagem se repita */
-    filter: grayscale(100%); /* Aplica o efeito preto e branco */
-    transition: filter 0.5s ease; /* Transição suave ao mudar o filtro */
-    cursor: pointer; /* Mostra que é clicável */
+    width: 50px;
+    /* Largura de cada quadrado */
+    height: 50px;
+    /* Altura de cada quadrado */
+    background-size: cover;
+    /* Faz a imagem ocupar todo o espaço da div */
+    background-repeat: no-repeat;
+    /* Impede que a imagem se repita */
+    filter: grayscale(100%);
+    /* Aplica o efeito preto e branco */
+    transition: filter 0.5s ease;
+    /* Transição suave ao mudar o filtro */
+    cursor: pointer;
+    /* Mostra que é clicável */
 }
 
 #espada1 {
@@ -277,7 +368,8 @@ nav ul li a:hover {
 }
 
 .cursores div.clicked {
-    filter: grayscale(0%); /* Remove o efeito preto e branco após o clique */
+    filter: grayscale(0%);
+    /* Remove o efeito preto e branco após o clique */
 }
 
 #enter-message {
@@ -290,10 +382,13 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute; /* Garante que o texto fique sobreposto ao background */
+    position: absolute;
+    /* Garante que o texto fique sobreposto ao background */
     top: 0;
-    z-index: 9999; /* Certifica-se que o texto esteja acima de tudo */
-    animation: blink 1s infinite; /* Animação de piscar */
+    z-index: 9999;
+    /* Certifica-se que o texto esteja acima de tudo */
+    animation: blink 1s infinite;
+    /* Animação de piscar */
     text-decoration: none;
 }
 
