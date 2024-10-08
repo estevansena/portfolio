@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
 
     // Verifica se o caminho é exatamente ou termina com /index.html
-    if (path === '/index.html' || path.endsWith('/index.html')) {
+    if (path === '/portfolio' || path.endsWith('/portfolio')) {
         // Adiciona um listener para a tecla pressionada
         document.addEventListener('keydown', function(event) {
             // Verifica se a tecla pressionada é Enter
