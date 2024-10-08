@@ -1,3 +1,22 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtém o caminho da URL atual
+    const path = window.location.pathname;
+
+    // Verifica se o caminho é exatamente ou termina com /index.html
+    if (path === '/index.html' || path.endsWith('/index.html')) {
+        // Adiciona um listener para a tecla pressionada
+        document.addEventListener('keydown', function(event) {
+            // Verifica se a tecla pressionada é Enter
+            if (event.key === 'Enter') {
+                // Redireciona para inicio.html
+                window.location.href = 'inicio.html';
+            }
+        });
+    }
+});
+
+
 const elemento = document.getElementById('textoDigitado');
 const textoOriginal = elemento.innerHTML; // Pega o texto do HTML
 const texto = textoOriginal.replace(/<br>/g, '\n'); // Substitui <br> por \n para o processamento
