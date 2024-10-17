@@ -45,7 +45,7 @@
 }
 
 
-#image-background-inicio {
+#image-background-sobre {
     background-image: url(./imagens/euespada.png);
     background-size: 20%;
     background-position: center 200px;
@@ -111,26 +111,27 @@
 #image-background-contato {
     background-image: url(./imagens/backgroundcontato.png);
 }
-
 nav {
-    position: relative;
-    /* Permite posicionar o ul de forma absoluta */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 45px;
-    padding-left: 8%;
-    padding-right: 8%;
+
 }
 
 nav ul {
+    background-color: rgba(0, 0, 0, 0.5); /* A última posição (0.5) é a opacidade, vai de 0 (transparente) a 1 (opaco) */
     position: absolute;
-    /* Posiciona o ul de forma absoluta */
-    left: 50%;
-    /* Move o ul 50% da largura do container */
-    transform: translateX(-50%);
-    /* Centraliza o ul */
     display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
     justify-content: center;
+    align-items: center;
+    padding: 10px 40px 10px 40px; /* Ordem: cima, direita, baixo, esquerda */
+
 }
 
 nav h2 {
@@ -157,7 +158,7 @@ nav ul li {
     list-style: none;
     cursor: pointer;
     position: relative;
-    /* Necessário para o posicionamento do ::before */
+  
 }
 
 nav ul li::before {
