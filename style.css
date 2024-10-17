@@ -401,3 +401,20 @@ h3 {
         opacity: 0;
     }
 }
+
+.voltarInicio {
+    position: fixed; /* Posiciona o elemento fixo na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 30px; /* Distância da direita da tela */
+    color: rgb(233, 182, 43);
+    text-decoration: none;
+    font-size: 35px;
+    text-transform: capitalize;
+    font-family: 'GAMERIA', sans-serif;
+    text-shadow: 6px 6px 6px black;
+}
+
+.voltarInicio:hover{
+    color: purple;
+    transform: scale(1.2);
+}
