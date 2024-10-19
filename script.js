@@ -50,7 +50,7 @@ document.addEventListener('mousemove', () => {
 });
 
 // Adicionando o som de seleção em cada item do menu
-document.querySelectorAll('nav ul li').forEach(item => {
+document.querySelectorAll('nav ul li, .voltarInicio').forEach(item => {
     item.addEventListener('mouseenter', () => {
         // Somente toca o som se o mouse tiver se movido desde o carregamento da página
         if (hasMouseMoved) {
