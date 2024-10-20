@@ -154,18 +154,18 @@ nav h2 {
 
 
 nav ul li {
-    padding: 10px 25px;
+    padding: 10px 30px;
     list-style: none;
     cursor: pointer;
     position: relative;
-  
+    
 }
 
 nav ul li::before {
     content: "👉";
     /* Símbolo da mãozinha */
     position: absolute;
-    left: 10px;
+    left: 15px;
     /* Mãozinha ficará à esquerda */
     opacity: 0;
     /* Inicialmente invisível */
