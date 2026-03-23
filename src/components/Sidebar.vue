@@ -18,11 +18,22 @@
       <div class="divider"></div>
     <nav>
    
-      <ul>
-        <li><HomeOutlined class="icon"/><a href="#">Home</a></li>
-        <li><ProjectOutlined class="icon"/><a href="#">Projects</a></li>
-        <li><CoffeeOutlined class="icon"/><a href="#">About</a></li>
-      </ul>
+ <ul>
+  <li>
+    <HomeOutlined class="icon"/>
+    <router-link to="/Home">Home</router-link>
+  </li>
+
+  <li>
+    <ProjectOutlined class="icon"/>
+    <router-link to="/Projects">Projects</router-link>
+  </li>
+
+  <li>
+    <CoffeeOutlined class="icon"/>
+    <router-link to="/About">About</router-link>
+  </li>
+</ul>
 
       <!-- linha separadora -->
       <div class="divider"></div>
