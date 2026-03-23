@@ -114,11 +114,11 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(51, 2, 73, 0.4);
   color: white;
   padding: 20px;
   position: fixed;
-  left: 5px;
+  left: 10px;
   top: 0;
 
   backdrop-filter: blur(10px);
