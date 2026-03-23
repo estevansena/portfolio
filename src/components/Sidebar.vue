@@ -34,7 +34,6 @@
     <router-link to="/About">About</router-link>
   </li>
 </ul>
-
       <!-- linha separadora -->
       <div class="divider"></div>
 
@@ -45,10 +44,6 @@
         <li><GithubOutlined class="icon" /> <a href="https://github.com/estevansena" target="_blank">GitHub</a></li>
         <li><LinkedinOutlined class="icon" /><a href="https://www.linkedin.com/in/estevan-sena-256a5524a/" target="_blank">LinkedIn</a></li>
       </ul>
-
-       <!-- linha separadora -->
-      <div class="divider"></div>
-
       <!-- nova seção -->
       <h3 class="section-title">SOCIAL</h3>
 
@@ -59,15 +54,15 @@
         <li><VideoCameraOutlined class="icon"/><a href="https://www.twitch.tv/estevansenalive/about" target="_blank">Twitch</a></li>
       </ul>
 
-          <!-- linha separadora -->
-      <div class="divider"></div>
-
       <!-- nova seção -->
       <h3 class="section-title">INTERACTION</h3>
 
       <ul>
         <li><MessageOutlined class="icon"/><a href="https://discord.com/invite/vnbV5H2wrF" target="_blank">Discord</a></li>
       </ul>
+
+                <!-- linha separadora -->
+      <div class="divider"></div>
 
     </nav>
   </aside>
@@ -87,8 +82,8 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border: 1px solid #ffffff;
 }
@@ -114,7 +109,7 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: rgba(51, 2, 73, 0.4);
+  background: rgba(36, 36, 36, 0.4);
   color: white;
   padding: 20px;
   position: fixed;
@@ -153,6 +148,10 @@ li:hover .icon {
 
 li:hover a {
   color: rgb(110, 21, 226);
+}
+
+.section-title {
+  margin-top: 15%;
 }
 
 /* linha separadora animada */

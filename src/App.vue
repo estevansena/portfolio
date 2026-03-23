@@ -3,7 +3,11 @@
     <Sidebar />
 
     <main class="content">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" :key="$route.fullPath" />
+        </transition>
+      </router-view>
     </main>
   </div>
 </template>
@@ -23,5 +27,16 @@ import Sidebar from './components/Sidebar.vue'
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* fade */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
