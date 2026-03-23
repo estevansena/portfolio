@@ -32,7 +32,7 @@ defineProps({
 <style scoped>
 .card {
   width: 18rem;
-  background: #fff;
+  background: #313030;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   transition: 0.3s;

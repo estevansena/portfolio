@@ -5,6 +5,8 @@
     <p class="typing">I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
         <!-- linha separadora -->
       <div class="divider"></div>  
+<h2>Projects</h2>
+<p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
 <div class="cards-container">
 <InfoCard 
   image="https://picsum.photos/400/200"
