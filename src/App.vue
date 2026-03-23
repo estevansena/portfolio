@@ -18,8 +18,10 @@ import Sidebar from './components/Sidebar.vue'
 }
 
 .content {
-  margin-left: 250px; /* espaço da sidebar */
-  padding: 20px;
+  margin-left: 220px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

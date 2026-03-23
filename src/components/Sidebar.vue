@@ -4,7 +4,7 @@
    <div class="profile">
   <img
     class="avatar"
-    src="../assets/images/eu_avatar.png"
+    src="../assets/images/eu_avatar.jpeg"
     alt="avatar"
   />
 
@@ -114,7 +114,7 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 20px;
   position: fixed;
