@@ -76,11 +76,10 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
-  border: 2px solid rgba(175, 2, 255, 0.356);
+  border: 1px solid #ffffff;
 }
 
 .info {
@@ -89,15 +88,15 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 }
 
 .name {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 }
 
 .username {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.6;
 }
 
