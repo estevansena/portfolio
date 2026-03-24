@@ -44,11 +44,27 @@
   <ViewMoreButton 
     class="view-more"
     url="https://github.com/estevansena"
-    text="View All Projects"
+    text="View More"
+  />
+ <Divider/> 
+ <h2>Tech Stack</h2>
+<p>Technologies and tools I use to build modern applications.</p>
+
+  <ViewMoreButton 
+    class="view-more"
+    url="https://github.com/estevansena"
+    text="View More"
   />
  <Divider/> 
  <h2>About</h2>
-<p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
+<p>Technologies and tools I use to build modern applications.</p>
+
+  <ViewMoreButton 
+    class="view-more"
+    url="https://github.com/estevansena"
+    text="View More"
+  />
+<Divider/> 
 
 </div>
 
