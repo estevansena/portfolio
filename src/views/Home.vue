@@ -5,7 +5,7 @@
     <p class="typing">I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
         <!-- linha separadora -->
       <Divider/>
-  <h2>Projects</h2>
+<h2>Projects</h2>
 <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
 <div class="cards-container">
     
@@ -14,7 +14,7 @@
   title="Meu Projeto"
   text="Projeto moderno com Vue e animações"
   link="#"
-  buttonText="Ver mais"
+  buttonText="View Online"
 />
 
 <InfoCard 
@@ -22,7 +22,7 @@
   title="Meu Projeto"
   text="Projeto moderno com Vue e animações"
   link="#"
-  buttonText="Ver mais"
+  buttonText="View Online"
 />
 
 <InfoCard 
@@ -30,7 +30,7 @@
   title="Meu Projeto"
   text="Projeto moderno com Vue e animações"
   link="#"
-  buttonText="Ver mais"
+  buttonText="View Online"
 />
 
 <InfoCard 
@@ -38,11 +38,17 @@
   title="Meu Projeto"
   text="Projeto moderno com Vue e animações"
   link="#"
-  buttonText="Ver mais"
+  buttonText="View Online"
 />
 </div>
-
+  <ViewMoreButton 
+    class="view-more"
+    url="https://github.com/estevansena"
+    text="View All Projects"
+  />
  <Divider/> 
+ <h2>About</h2>
+<p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
 
 </div>
 
@@ -51,6 +57,7 @@
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
 import Divider from '../components/Divider.vue'
+import ViewMoreButton from "../components/ViewMoreButton.vue"
 </script>
 
 <style scoped>
@@ -111,6 +118,12 @@ h3, h2, p {
     border-color: transparent;
   }
 }
+
+.view-more {
+  display: block;       /* garante comportamento de bloco */
+  margin-top: 15px;     /* gap em relação aos cards */
+}
+
 .cards-container {
   display: flex;
   width: calc(100% - 20px);

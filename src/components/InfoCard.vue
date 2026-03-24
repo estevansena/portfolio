@@ -24,7 +24,7 @@ defineProps({
   link: String,
   buttonText: {
     type: String,
-    default: 'Ver mais'
+    default: 'View More'
   }
 })
 </script>
@@ -49,6 +49,14 @@ defineProps({
   width: 100%;
   height: 180px;
   object-fit: cover;
+
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+/* quando passar o mouse no card */
+.card:hover .card-img-top {
+  filter: grayscale(0%);
 }
 
 .card-body {
@@ -75,7 +83,6 @@ defineProps({
   color: white;
   text-decoration: none;
   transition: 0.3s;
-  border-radius: 4px;
 }
 
 .btn:hover {
