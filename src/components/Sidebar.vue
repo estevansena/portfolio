@@ -4,7 +4,7 @@
    <div class="profile">
   <img
     class="avatar"
-    src="../assets/images/eu_avatar.jpeg"
+    src="https://github.com/estevansena.png"
     alt="avatar"
   />
 
@@ -109,7 +109,7 @@ import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutl
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: rgba(36, 36, 36, 0.4);
+  background: rgb(17, 17, 17);
   color: white;
   padding: 20px;
   position: fixed;
@@ -190,4 +190,6 @@ li:hover a {
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
+
+
 </style>

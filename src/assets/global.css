@@ -1,21 +1,34 @@
-html, body, #app {
-  background:#000000;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  background: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100vh;
 }
 
 h3 {
   font-size: 60px;
   color: #ffffff;
+  margin: 0;
 }
 
 h2 {
   font-size: 30px;
   color: #ffffff;
+  margin: 0;
 }
 
 p {
   font-size: 20px;
+  line-height: 1.6;
   color: #ffffff;
 }
-
