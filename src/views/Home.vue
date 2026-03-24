@@ -4,7 +4,7 @@
 <h2>Frontend Developer | Interactive UI</h2>
     <p class="typing">I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
         <!-- linha separadora -->
-      <div class="divider"></div>  
+      <Divider/>
   <h2>Projects</h2>
 <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
 <div class="cards-container">
@@ -42,7 +42,7 @@
 />
 </div>
 
-  <div class="divider"></div>  
+ <Divider/> 
 
 </div>
 
@@ -50,6 +50,7 @@
 
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
+import Divider from '../components/Divider.vue'
 </script>
 
 <style scoped>
@@ -110,35 +111,6 @@ h3, h2, p {
     border-color: transparent;
   }
 }
-
-/* linha separadora animada */
-.divider {
-  height: 2px;
-  margin: 20px 0;
-  border-radius: 2px;
-
-  background: linear-gradient(
-    90deg,
-    #a100ff,
-    #4a00ff,
-    #a100ff
-  );
-
-  background-size: 300% 100%;
-  animation: moveGradient 3.0s ease-in-out infinite alternate;
-
-  opacity: 0.85;
-}
-
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
 .cards-container {
   display: flex;
   width: calc(100% - 20px);

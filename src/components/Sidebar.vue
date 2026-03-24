@@ -14,8 +14,8 @@
   </div>
 
 </div>
-          <!-- linha separadora -->
-      <div class="divider"></div>
+
+<Divider/>
     <nav>
    
  <ul>
@@ -34,8 +34,8 @@
     <router-link to="/About">About</router-link>
   </li>
 </ul>
-      <!-- linha separadora -->
-      <div class="divider"></div>
+     
+     <Divider/>
 
       <!-- nova seção -->
       <h3 class="section-title">PROFESSIONAL</h3>
@@ -61,8 +61,7 @@
         <li><MessageOutlined class="icon"/><a href="https://discord.com/invite/vnbV5H2wrF" target="_blank">Discord</a></li>
       </ul>
 
-                <!-- linha separadora -->
-      <div class="divider"></div>
+      <Divider/>
 
     </nav>
   </aside>
@@ -70,6 +69,7 @@
 
 <script setup>
 import { HomeOutlined,ProjectOutlined,CoffeeOutlined,GithubOutlined,LinkedinOutlined,InstagramFilled,CameraFilled,TwitterCircleFilled,MessageOutlined,VideoCameraOutlined} from '@ant-design/icons-vue'
+import Divider from '../components/Divider.vue'
 </script>
 
 <style scoped>
@@ -152,34 +152,6 @@ li:hover a {
 
 .section-title {
   margin-top: 15%;
-}
-
-/* linha separadora animada */
-.divider {
-  height: 2px;
-  margin: 20px 0;
-  border-radius: 2px;
-
-  background: linear-gradient(
-    90deg,
-    #a100ff,
-    #4a00ff,
-    #a100ff
-  );
-
-  background-size: 300% 100%;
-  animation: moveGradient 3.0s ease-in-out infinite alternate;
-
-  opacity: 0.85;
-}
-
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
 }
 
 /* título da seção */
