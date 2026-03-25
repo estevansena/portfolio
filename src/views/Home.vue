@@ -10,7 +10,13 @@
 <div class="cards-container">
     
   <InfoCard
-      image="https://picsum.photos/400/200"
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+    />
+
+  <InfoCard
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
@@ -19,7 +25,6 @@
     />
 
   <InfoCard
-      image="https://picsum.photos/400/200"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
@@ -28,16 +33,6 @@
     />
 
   <InfoCard
-      image="https://picsum.photos/400/200"
-      title="Meu Projeto"
-      text="Projeto feito com Vue e Node.js"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
-    />
-
-  <InfoCard
-      image="https://picsum.photos/400/200"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"

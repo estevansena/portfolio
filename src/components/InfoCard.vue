@@ -1,7 +1,5 @@
 <template>
   <div class="card">
-    <img :src="image" class="card-img-top" :alt="title">
-
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
 
@@ -46,7 +44,6 @@
 import { GithubOutlined, LinkOutlined } from '@ant-design/icons-vue'
 
 defineProps({
-  image: String,
   title: String,
   text: String,
   tags: {
@@ -118,18 +115,6 @@ const getTagStyle = (tag) => {
   background: rgb(29, 29, 29);
 }
 
-.card-img-top {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter 0.4s ease;
-}
-
-.card:hover .card-img-top {
-  filter: grayscale(0%);
-}
-
 .card-body {
   padding: 15px;
   display: flex;
@@ -139,7 +124,7 @@ const getTagStyle = (tag) => {
 
 .card-title {
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   color: #ffffff;
 }
 
@@ -147,6 +132,7 @@ const getTagStyle = (tag) => {
   font-size: 0.9rem;
   color: #777676;
   margin-bottom: 15px;
+  flex-grow: 1;
 }
 
 .tags-container {
