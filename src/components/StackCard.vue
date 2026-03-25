@@ -17,31 +17,11 @@
           {{ tag }}
         </span>
       </div>
-
-      <div class="actions-container">
-        <a 
-          v-if="githubLink" 
-          :href="githubLink" 
-          target="_blank" 
-          class="btn btn-github"
-        >
-          <GithubOutlined /> GitHub
-        </a>
-        <a 
-          v-if="projectLink" 
-          :href="projectLink" 
-          target="_blank" 
-          class="btn btn-project"
-        >
-          <LinkOutlined /> View Online
-        </a>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { GithubOutlined, LinkOutlined } from '@ant-design/icons-vue'
 
 defineProps({
   title: String,
@@ -50,8 +30,6 @@ defineProps({
     type: Array,
     default: () => []
   },
-  githubLink: String,
-  projectLink: String
 })
 
 const tagColors = {
@@ -158,45 +136,5 @@ const getTagStyle = (tag) => {
   margin-top: auto;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border-radius: 0;
-  transition: 0.3s;
-  flex: 1; /* Make buttons grow equally if both are present */
-}
 
-.btn-project {
-  background: #a100ff;
-}
-
-.btn-project:hover {
-  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
-  background-size: 300% 100%;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-.btn-github {
-  background: #2b2b2b;
-  border: 1px solid #444;
-}
-
-.btn-github:hover {
-  background: #444;
-  transform: translateY(-2px);
-}
-
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
 </style>

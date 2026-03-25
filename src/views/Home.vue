@@ -55,32 +55,24 @@
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
     />
 
       <StackCard
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
     />
 
       <StackCard
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
     />
 
       <StackCard
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
     />
 
     </div>

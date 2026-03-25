@@ -109,15 +109,12 @@ import Divider from '../components/Divider.vue'
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: rgb(17, 17, 17);
+  background: rgb(0, 0, 0);
   color: white;
   padding: 20px;
   position: fixed;
   left: 10px;
   top: 0;
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 ul {

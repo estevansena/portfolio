@@ -174,7 +174,8 @@ const getTagStyle = (tag) => {
 }
 
 .btn-project {
-  background: #a100ff;
+  background: #2b2b2b;
+  border: 1px solid #444;
 }
 
 .btn-project:hover {
@@ -191,12 +192,10 @@ const getTagStyle = (tag) => {
 }
 
 .btn-github:hover {
-  background: #444;
+  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
+  background-size: 300% 100%;
+  animation: moveGradient 3s ease-in-out infinite alternate;
+  opacity: 0.9;
   transform: translateY(-2px);
-}
-
-@keyframes moveGradient {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
 }
 </style>

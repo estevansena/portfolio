@@ -20,11 +20,7 @@ defineProps({
 </script>
 
 <style scoped>
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 /* botão */
 .btn {
@@ -47,23 +43,14 @@ defineProps({
   z-index: 2;
 }
 
-/* efeito hover */
-.btn::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #a100ff;
-  transition: all 0.35s;
-}
-
 .btn:hover {
-  color: #fff;
+  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
+  background-size: 300% 100%;
+    color: #ffffff;
+  animation: moveGradient 3s ease-in-out infinite alternate;
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-.btn:hover::after {
-  width: 100%;
-}
+
 </style>
