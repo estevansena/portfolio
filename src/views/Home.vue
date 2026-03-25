@@ -9,37 +9,42 @@
 <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
 <div class="cards-container">
     
-<InfoCard 
-  image="https://picsum.photos/400/200"
-  title="Meu Projeto"
-  text="Projeto moderno com Vue e animações"
-  link="#"
-  buttonText="View Online"
-/>
+  <InfoCard
+      image="https://picsum.photos/400/200"
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
 
-<InfoCard 
-  image="https://picsum.photos/400/200"
-  title="Meu Projeto"
-  text="Projeto moderno com Vue e animações"
-  link="#"
-  buttonText="View Online"
-/>
+  <InfoCard
+      image="https://picsum.photos/400/200"
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
 
-<InfoCard 
-  image="https://picsum.photos/400/200"
-  title="Meu Projeto"
-  text="Projeto moderno com Vue e animações"
-  link="#"
-  buttonText="View Online"
-/>
+  <InfoCard
+      image="https://picsum.photos/400/200"
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
 
-<InfoCard 
-  image="https://picsum.photos/400/200"
-  title="Meu Projeto"
-  text="Projeto moderno com Vue e animações"
-  link="#"
-  buttonText="View Online"
-/>
+  <InfoCard
+      image="https://picsum.photos/400/200"
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
+    
 </div>
   <ViewMoreButton 
     class="view-more"
