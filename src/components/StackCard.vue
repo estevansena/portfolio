@@ -79,9 +79,10 @@ const getTagStyle = (tag) => {
 <style scoped>
 .card {
   width: 18rem;
-  background: rgb(17, 17, 17);
+  background: rgb(0, 0, 0);
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border: 1px solid #ffffff; /* <- aqui resolve */
   transition: 0.3s;
   display: flex;
   flex-direction: column;
