@@ -50,6 +50,41 @@
  <h2>Tech Stack</h2>
 <p>Technologies and tools I use to build modern applications.</p>
 
+<div class="cards-container">
+  <StackCard
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
+
+      <StackCard
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
+
+      <StackCard
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
+
+      <StackCard
+      title="Meu Projeto"
+      text="Projeto feito com Vue e Node.js"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+      projectLink="https://meuprojeto.com"
+    />
+
+    </div>
+
   <ViewMoreButton 
     class="view-more"
     url="https://github.com/estevansena"
@@ -66,12 +101,14 @@
   />
 <Divider/> 
 
+
 </div>
 
 </template>
 
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
+import StackCard from "../components/StackCard.vue"
 import Divider from '../components/Divider.vue'
 import ViewMoreButton from "../components/ViewMoreButton.vue"
 </script>
