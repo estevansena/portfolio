@@ -10,18 +10,17 @@
 <div class="cards-container">
     
   <InfoCard
-      title="Meu Projeto"
-      text="Projeto feito com Vue e Node.js"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
+      title="Portfolio"
+      text="Portfolio feito para apresentar meus projetos e habilidades"
+      :tags="['Vue.js', 'JavaScript', 'CSS', 'HTML']"
+      githubLink="https://github.com/estevansena/portfolio"
     />
 
   <InfoCard
-      title="Meu Projeto"
-      text="Projeto feito com Vue e Node.js"
+      title="Video Backup Downloader"
+      text="Ferramenta para download de vídeos, audios e thumbnails"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
       githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
     />
 
   <InfoCard
@@ -52,24 +51,28 @@
 
 <div class="cards-container">
   <StackCard
+      image="https://github.com/estevansena.png"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
     />
 
       <StackCard
+      image="https://github.com/estevansena.png"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
     />
 
       <StackCard
+      image="https://github.com/estevansena.png"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"
     />
 
       <StackCard
+      image="https://github.com/estevansena.png"
       title="Meu Projeto"
       text="Projeto feito com Vue e Node.js"
       :tags="['Vue.js', 'Node.js', 'JavaScript']"

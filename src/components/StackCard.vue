@@ -1,7 +1,11 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">{{ title }}</h5>
+      
+      <div class="card-header">
+        <img v-if="image" :src="image" class="avatar" alt="Avatar" />
+        <h5 class="card-title">{{ title }}</h5>
+      </div>
 
       <p class="card-text">
         {{ text }}
@@ -24,6 +28,7 @@
 <script setup>
 
 defineProps({
+  image: String,
   title: String,
   text: String,
   tags: {
@@ -101,9 +106,23 @@ const getTagStyle = (tag) => {
   flex-grow: 1;
 }
 
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 0%;
+  object-fit: cover;
+}
+
 .card-title {
   font-size: 1.2rem;
-  margin: 0 0 10px 0;
+  margin: 0;
   color: #ffffff;
 }
 
@@ -118,7 +137,7 @@ const getTagStyle = (tag) => {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .tag-badge {
