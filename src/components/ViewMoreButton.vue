@@ -29,8 +29,9 @@ defineProps({
   font-size: 14px;
   font-family: sans-serif;
   text-decoration: none;
-  color: #4d4d4d;
-  border: 2px solid #333;
+  color: white;
+  background: #2b2b2b;
+  border: 1px solid #444;
   letter-spacing: 2px;
   text-align: center;
   position: relative;
