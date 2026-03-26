@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+      <GridHoverEffect />
 <h3>Estevan <span class="sena">Sena</span></h3>   
 <h2>Frontend Developer | Interactive UI</h2>
     <p class="typing">I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
@@ -96,6 +97,8 @@
   />
 <Divider/> 
 
+  <GridHoverEffect />
+
 </div>
 
 </template>
@@ -105,6 +108,7 @@ import InfoCard from '../components/InfoCard.vue'
 import StackCard from "../components/StackCard.vue"
 import Divider from '../components/Divider.vue'
 import ViewMoreButton from "../components/ViewMoreButton.vue"
+import GridHoverEffect from '../components/GridHoverEffect.vue'
 </script>
 
 <style scoped>

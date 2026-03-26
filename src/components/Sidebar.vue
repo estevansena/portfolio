@@ -15,7 +15,6 @@
 
 </div>
 
-<Divider/>
     <nav>
    
  <ul>
@@ -35,17 +34,19 @@
   </li>
 </ul>
      
-     <Divider/>
+
 
       <!-- nova seção -->
-      <h3 class="section-title">PROFESSIONAL</h3>
+      <h3>PROFESSIONAL</h3>
+       <Divider/> 
 
       <ul>
         <li><GithubOutlined class="icon" /> <a href="https://github.com/estevansena" target="_blank">GitHub</a></li>
         <li><LinkedinOutlined class="icon" /><a href="https://www.linkedin.com/in/estevan-sena-256a5524a/" target="_blank">LinkedIn</a></li>
       </ul>
       <!-- nova seção -->
-      <h3 class="section-title">SOCIAL</h3>
+      <h3>SOCIAL</h3>
+       <Divider/> 
 
       <ul>
         <li><InstagramFilled class="icon"/><a href="https://www.instagram.com/estevan.senaa/" target="_blank">Instagram</a></li>
@@ -55,13 +56,14 @@
       </ul>
 
       <!-- nova seção -->
-      <h3 class="section-title">INTERACTION</h3>
+      <h3>INTERACTION</h3>
+       <Divider/> 
 
       <ul>
         <li><MessageOutlined class="icon"/><a href="https://discord.com/invite/vnbV5H2wrF" target="_blank">Discord</a></li>
       </ul>
 
-      <Divider/>
+
 
     </nav>
   </aside>
@@ -85,7 +87,8 @@ import Divider from '../components/Divider.vue'
   width: 80px;
   height: 80px;
   object-fit: cover;
-  border: 1px solid #ffffff;
+  border: 2px solid #a100ff;
+  box-shadow: 4px 4px 0px #a100ff;
 }
 
 .info {
@@ -108,14 +111,16 @@ import Divider from '../components/Divider.vue'
 
 .sidebar {
   width: 200px;
-  height: 80vh;
-  background:#000000;
-  border: 1px solid #ffffff;
+  height: 800px;
+  background: #050505;
+  border: 2px solid #a100ff;
+  box-shadow: 8px 8px 0px #a100ff;
   color: white;
   padding: 20px;
   position: fixed;
-  left: 10px;
-  top: 10px;
+  left: 20px;
+  top: 30px;
+  border-radius: 0;
 }
 
 ul {
@@ -128,38 +133,46 @@ li {
   align-items: center;
   gap: 10px;
   margin: 15px 0;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
 }
 
 .icon {
   font-size: 18px;
   color: white;
+  transition: 0.15s;
 }
 
 a {
   color: white;
   text-decoration: none;
+  transition: 0.15s;
+  width: 100%;
+}
+
+li:hover {
+  background: #a100ff;
+  border: 1px solid #ffffff;
+  box-shadow: 4px 4px 0px #a100ff;
+  transform: translateX(10px);
 }
 
 li:hover .icon {
-  color: rgb(88, 8, 192);
+  color: #000000;
 }
 
 li:hover a {
-  color: rgb(110, 21, 226);
+  color: #000000;
+  font-weight: 800;
 }
 
-.section-title {
-  margin-top: 15%;
-}
-
-/* título da seção */
-.section-title {
+h3 {
   font-size: 12px;
+  font-weight: 800;
   text-transform: uppercase;
-  opacity: 0.6;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  color: #a100ff;
+  letter-spacing: 2px;
 }
-
-
 </style>
