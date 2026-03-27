@@ -3,7 +3,7 @@
       <GridHoverEffect />
 <h3>Estevan <span class="sena">Sena</span></h3>   
 <h2>Frontend Developer | Interactive UI</h2>
-    <p class="typing">I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
+    <p>I’m a front-end developer focused on building modern interfaces with smooth interactions, reusable components, and immersive visual experiences.</p>
         <!-- linha separadora -->
       <Divider/>
 <h2>Projects</h2>
@@ -90,14 +90,20 @@
  <h2>About</h2>
 <p>Technologies and tools I use to build modern applications.</p>
 
+<BioCard
+  image="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
+  title="Meu Projeto"
+  description="Descrição do projeto aqui."
+/>
+
   <ViewMoreButton 
     class="view-more"
     url="https://github.com/estevansena"
     text="View More"
   />
-<Divider/> 
+<br>
 
-  <GridHoverEffect />
+
 
 </div>
 
@@ -108,7 +114,7 @@ import InfoCard from '../components/InfoCard.vue'
 import StackCard from "../components/StackCard.vue"
 import Divider from '../components/Divider.vue'
 import ViewMoreButton from "../components/ViewMoreButton.vue"
-import GridHoverEffect from '../components/GridHoverEffect.vue'
+import BioCard from '../components/BioCard.vue'
 </script>
 
 <style scoped>
@@ -138,36 +144,6 @@ import GridHoverEffect from '../components/GridHoverEffect.vue'
 
 h3, h2, p {
   margin: 10px 0;
-}
-
-/* efeito typing */
-.typing {
-  width: fit-content;
-  overflow: hidden;
-  white-space: nowrap;
-
-  border-right: 2px solid #ffffff; /* cursor */
-
-  animation: 
-    typing 3s steps(30, end),
-    blink 0.8s infinite;
-}
-
-/* animação de digitação */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* cursor piscando */
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
 }
 
 .view-more {

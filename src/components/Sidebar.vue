@@ -87,8 +87,8 @@ import Divider from '../components/Divider.vue'
   width: 80px;
   height: 80px;
   object-fit: cover;
-  border: 2px solid #a100ff;
-  box-shadow: 4px 4px 0px #a100ff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
 }
 
 .info {
@@ -112,9 +112,11 @@ import Divider from '../components/Divider.vue'
 .sidebar {
   width: 200px;
   height: 800px;
-  background: #050505;
-  border: 2px solid #a100ff;
-  box-shadow: 8px 8px 0px #a100ff;
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   color: white;
   padding: 20px;
   position: fixed;
@@ -153,26 +155,25 @@ a {
 }
 
 li:hover {
-  background: #a100ff;
-  border: 1px solid #ffffff;
-  box-shadow: 4px 4px 0px #a100ff;
-  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
 }
 
 li:hover .icon {
-  color: #000000;
+  color: #ffffff;
 }
 
 li:hover a {
-  color: #000000;
-  font-weight: 800;
+  color: #ffffff;
+  font-weight: 500;
 }
 
 h3 {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #a100ff;
+  color: #aaaaaa;
   letter-spacing: 2px;
 }
 </style>

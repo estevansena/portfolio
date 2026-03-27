@@ -85,15 +85,15 @@ const getTagStyle = (tag) => {
   if (tagColors[norm]) {
     const baseColor = tagColors[norm].bg;
     return { 
-      backgroundColor: hexToRgba(baseColor, 0.15), 
+      backgroundColor: 'rgba(255, 255, 255, 0.05)', 
       color: baseColor,
-      border: `1px solid ${hexToRgba(baseColor, 0.3)}`
+      border: `1px solid rgba(255, 255, 255, 0.1)`
     };
   }
   return { 
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-    color: '#ccc',
-    border: '1px solid rgba(255, 255, 255, 0.2)'
+    backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+    color: '#aaaaaa',
+    border: '1px solid rgba(255, 255, 255, 0.1)'
   };
 }
 </script>
@@ -101,11 +101,13 @@ const getTagStyle = (tag) => {
 <style scoped>
 .card {
   width: 18rem;
-  background: rgb(0, 0, 0);
+  background: rgba(15, 15, 15, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  transition: 0.3s;
-  border: 1px solid #ffffff; /* <- aqui resolve */
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   border-radius: 0;
@@ -113,7 +115,9 @@ const getTagStyle = (tag) => {
 
 .card:hover {
   transform: translateY(-5px);
-  background: rgb(29, 29, 29);
+  background: rgba(25, 25, 25, 0.8) !important;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.7) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .card-body {
@@ -175,28 +179,26 @@ const getTagStyle = (tag) => {
 }
 
 .btn-project {
-  background: #2b2b2b;
-  border: 1px solid #444;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-project:hover {
-  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
-  background-size: 300% 100%;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
 
 .btn-github {
-  background: #2b2b2b;
-  border: 1px solid #444;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-github:hover {
-  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
-  background-size: 300% 100%;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
 </style>
