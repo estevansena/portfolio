@@ -138,8 +138,9 @@ li {
   padding: 8px 12px;
   border: 1px solid transparent;
   background: transparent;
-  transition: transform 0.15s ease-out; /* Transiciona só o movimento pra desligar cores/bordas na hora */
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out; /* Adicionado opacity na transição macia */
   cursor: pointer;
+  opacity: 1;
 }
 
 .icon {
@@ -155,22 +156,35 @@ a {
   width: 100%;
 }
 
-li:hover {
+/* 1. PÁGINA ATIVA (Foco total, brilho máximo 100%) */
+li:has(.router-link-active) {
   background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
   background-size: 300% 100%;
   animation: moveGradient 3s ease-in-out infinite alternate;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
   transform: translateX(6px);
+  opacity: 1; /* Força 100% de visibilidade */
 }
 
-li:hover .icon {
-  color: #ffffff;
+li:has(.router-link-active) .icon { color: #ffffff; }
+li:has(.router-link-active) a { color: #ffffff; font-weight: 800; }
+
+/* 2. HOVER COMUM (Passar o mouse sobre outros links - leve transparência pra diferenciar) */
+li:hover {
+  background: rgba(255, 255, 255, 0.4);
+  background-size: 300% 100%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transform: translateX(6px);
+  opacity: 0.6; /* A opacidade reduzida dá o efeito de "passar o mouse" e confirma que não é a rota atual */
 }
 
-li:hover a {
-  color: #ffffff;
-  font-weight: 800;
+li:hover .icon { color: #ffffff; }
+li:hover a { color: #ffffff; font-weight: 800; }
+
+/* Feedback levíssimo ao encostar num link que JÁ ESTÁ ativo, só pra ele sentir o clique */
+li:has(.router-link-active):hover {
+  opacity: 0.8 !important;
 }
 
 h3 {
