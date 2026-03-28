@@ -86,24 +86,6 @@
     url="https://github.com/estevansena"
     text="View More"
   />
- <Divider/> 
- <h2>About</h2>
-<p>Technologies and tools I use to build modern applications.</p>
-
-<BioCard
-  image="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1535759872/kuldar-kalvik-799168-unsplash.webp"
-  title="Meu Projeto"
-  description="Descrição do projeto aqui."
-/>
-
-  <ViewMoreButton 
-    class="view-more"
-    url="https://github.com/estevansena"
-    text="View More"
-  />
-<br>
-
-
 
 </div>
 
@@ -114,12 +96,12 @@ import InfoCard from '../components/InfoCard.vue'
 import StackCard from "../components/StackCard.vue"
 import Divider from '../components/Divider.vue'
 import ViewMoreButton from "../components/ViewMoreButton.vue"
-import BioCard from '../components/BioCard.vue'
 </script>
 
 <style scoped>
 .home {
-  margin-top: 100px;
+  margin-top: 15px;
+  padding-bottom: 15px;
 }
 
 .sena {
@@ -144,6 +126,7 @@ import BioCard from '../components/BioCard.vue'
 
 h3, h2, p {
   margin: 10px 0;
+
 }
 
 .view-more {

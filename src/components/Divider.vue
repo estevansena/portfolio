@@ -13,7 +13,7 @@
   color: #a100ff;
   margin-bottom: 15px;
   letter-spacing: 2px;
-  border-bottom: 2px solid #a100ff;
+  border-bottom: 2px solid #202020;
 
 }
 

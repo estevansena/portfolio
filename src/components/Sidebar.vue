@@ -137,27 +137,31 @@ li {
   margin: 15px 0;
   padding: 8px 12px;
   border: 1px solid transparent;
-  transition: all 0.15s ease-in-out;
+  background: transparent;
+  transition: transform 0.15s ease-out; /* Transiciona só o movimento pra desligar cores/bordas na hora */
   cursor: pointer;
 }
 
 .icon {
   font-size: 18px;
   color: white;
-  transition: 0.15s;
+  transition: color 0.1s;
 }
 
 a {
   color: white;
   text-decoration: none;
-  transition: 0.15s;
+  transition: color 0.1s;
   width: 100%;
 }
 
 li:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateX(4px);
+  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
+  background-size: 300% 100%;
+  animation: moveGradient 3s ease-in-out infinite alternate;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
+  transform: translateX(6px);
 }
 
 li:hover .icon {
@@ -166,7 +170,7 @@ li:hover .icon {
 
 li:hover a {
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 800;
 }
 
 h3 {

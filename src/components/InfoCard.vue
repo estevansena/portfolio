@@ -178,27 +178,18 @@ const getTagStyle = (tag) => {
   flex: 1; /* Make buttons grow equally if both are present */
 }
 
-.btn-project {
+.btn-project, .btn-github {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-project:hover {
-  background: rgba(255, 255, 255, 0.15);
+.btn-project:hover, .btn-github:hover {
+  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
+  background-size: 300% 100%;
+  animation: moveGradient 3s ease-in-out infinite alternate;
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-github {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.btn-github:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: transparent;
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 </style>
