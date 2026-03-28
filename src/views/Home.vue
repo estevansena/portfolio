@@ -42,7 +42,7 @@
 </div>
   <ViewMoreButton 
     class="view-more"
-    url="https://github.com/estevansena"
+    url="/Projects"
     text="View More"
   />
  <Divider/> 

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <a :href="url" target="_blank" class="btn">
-      <span>{{ text }}</span>
-    </a>
+<router-link :to="url" class="btn">
+  <span>{{ text }}</span>
+</router-link>
   </div>
 </template>
 
