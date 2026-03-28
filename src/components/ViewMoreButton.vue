@@ -47,8 +47,9 @@ defineProps({
 .btn:hover {
   background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
   background-size: 300% 100%;
-    color: #ffffff;
+  color: #ffffff;
   animation: moveGradient 3s ease-in-out infinite alternate;
+  box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
   opacity: 0.9;
   transform: translateY(-2px);
 }

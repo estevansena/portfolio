@@ -187,6 +187,7 @@ const getTagStyle = (tag) => {
   background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
   background-size: 300% 100%;
   animation: moveGradient 3s ease-in-out infinite alternate;
+  box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
   color: #ffffff;
   border-color: transparent;
   opacity: 0.9;
