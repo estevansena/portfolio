@@ -100,43 +100,64 @@ import ViewMoreButton from "../components/ViewMoreButton.vue"
 <style scoped>
 .home {
   margin-top: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 50px;
 }
 
+/* Nome principal — texto gigante com glow */
+h3 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.2);
+  margin: 0 0 5px 0;
+}
+
+/* Sobrenome em destaque magenta */
 .sena {
-  background: linear-gradient(
-    90deg,
-    #a100ff,
-    #4a00ff,
-    #a100ff
-  );
-
-  background-size: 300% 100%;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-
-  /* ESSENCIAL PRA TEXTO */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  /* opcional (compatibilidade futura) */
-  background-clip: text;
-  color: transparent;
+  color: #ff0066;
+  -webkit-text-fill-color: #ff0066;
+  text-shadow: 0 0 20px rgba(255, 0, 102, 0.8), 0 0 50px rgba(255, 0, 102, 0.3);
 }
 
-h3, h2, p {
-  margin: 10px 0;
+/* Subtítulo — ciano com tracking */
+h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(0, 238, 255, 0.7);
+  margin: 0 0 20px 0;
+}
 
+/* Parágrafo descritivo — caixa de vidro navy com borda ciano */
+p {
+  font-size: 0.95rem;
+  color: rgba(0, 238, 255, 0.55);
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  margin: 8px 0 20px 0;
+  max-width: 700px;
+  padding: 12px 18px;
+  background: rgba(0, 238, 255, 0.03);
+  border-left: 2px solid rgba(0, 238, 255, 0.4);
 }
 
 .view-more {
-  display: block;       /* garante comportamento de bloco */
-  margin-top: 15px;     /* gap em relação aos cards */
+  display: block;
+  margin-top: 20px;
 }
 
 .cards-container {
   display: flex;
+  flex-wrap: nowrap;
   width: calc(100% - 20px);
-  gap: 20px; /* espaço entre cards */
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-top: 10px; /* Espaço pra borda superior do card não ser cortada no hover */
+  padding-bottom: 5px;
 }
 
-</style>
+</style>

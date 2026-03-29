@@ -7,15 +7,10 @@
 
 <style scoped>
 .divider {
-  height: 2px;
-  margin: 10px 0;
-  border-radius: 2px;
-  color: #a100ff;
-  margin-bottom: 15px;
-  letter-spacing: 2px;
-  border-bottom: 2px solid #202020;
-
+  height: 1px;
+  margin: 12px 0 16px 0;
+  border: none;
+  background: rgba(255, 0, 102, 0.5);
+  box-shadow: 0 0 8px rgba(255, 0, 102, 0.5), 0 0 20px rgba(255, 0, 102, 0.15);
 }
-
-
 </style>

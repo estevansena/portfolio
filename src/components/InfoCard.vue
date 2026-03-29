@@ -1,5 +1,13 @@
 <template>
-  <div class="card">
+  <div 
+    class="card" 
+    ref="cardRef"
+    @mousemove="handleMouseMove"
+    @mouseleave="resetRotation"
+    :style="{ 
+      transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)` 
+    }"
+  >
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
 
@@ -41,6 +49,7 @@
 </template>
 
 <script setup>
+import { ref, reactive } from 'vue'
 import { GithubOutlined, LinkOutlined } from '@ant-design/icons-vue'
 
 defineProps({
@@ -54,7 +63,36 @@ defineProps({
   projectLink: String
 })
 
+const cardRef = ref(null)
+const rotation = reactive({ x: 0, y: 0 })
+
+const handleMouseMove = (e) => {
+  if (!cardRef.value) return
+  
+  const card = cardRef.value
+  const rect = card.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  
+  // Calcula a rotação (máximo 15 graus)
+  // Eixo Y rotaciona baseado no movimento X (movimento horizontal inclina verticalmente)
+  // Eixo X rotaciona baseado no movimento Y (movimento vertical inclina horizontalmente)
+  const rotateX = ((y - centerY) / centerY) * -12
+  const rotateY = ((x - centerX) / centerX) * 12
+  
+  rotation.x = rotateX
+  rotation.y = rotateY
+}
+
+const resetRotation = () => {
+  rotation.x = 0
+  rotation.y = 0
+}
+
 const tagColors = {
+  // ... (rest of colors)
   javascript: { bg: '#F0DB4F', color: '#323330' },
   python: { bg: '#3776AB', color: '#ffffff' },
   'node.js': { bg: '#339939', color: '#ffffff' },
@@ -114,18 +152,18 @@ const getTagStyle = (tag) => {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   overflow: hidden;
-  border: 1px solid #00eeff !important;
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 40px rgba(0, 238, 255, 0.1), inset 0 0 30px rgba(0, 238, 255, 0.02) !important;
-  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(0, 238, 255, 0.6) !important;
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2), inset 0 0 15px rgba(0, 238, 255, 0.01) !important;
+  transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   border-radius: 0;
+  transform-style: preserve-3d; /* Permite profundidade nos elementos filhos se desejado */
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: #00eeff !important;
-  box-shadow: 0 0 25px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.15), inset 0 0 40px rgba(0, 238, 255, 0.04) !important;
+  border-color: rgba(0, 238, 255, 0.9) !important;
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 30px rgba(0, 238, 255, 0.1), inset 0 0 20px rgba(0, 238, 255, 0.02) !important;
 }
 
 .card-body {
@@ -142,6 +180,7 @@ const getTagStyle = (tag) => {
   text-shadow: 0 0 8px rgba(0, 238, 255, 0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
+  transform: translateZ(50px); /* Faz o título saltar para frente */
 }
 
 .card-text {
@@ -150,6 +189,7 @@ const getTagStyle = (tag) => {
   margin-bottom: 15px;
   flex-grow: 1;
   letter-spacing: 0.3px;
+  transform: translateZ(30px); /* Texto fica em uma camada intermediária */
 }
 
 .tags-container {
@@ -173,6 +213,8 @@ const getTagStyle = (tag) => {
   display: flex;
   gap: 10px;
   margin-top: auto;
+  flex-wrap: nowrap;
+  transform: translateZ(40px); /* Botoes saltam um pouco mais que o texto */
 }
 
 .btn {
@@ -180,16 +222,17 @@ const getTagStyle = (tag) => {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   color: rgba(0, 238, 255, 0.8);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 0;
   transition: all 0.2s ease-in-out;
-  flex: 1;
+  white-space: nowrap; /* impede quebra de linha */
+  flex: 0 0 auto; /* tamanho fixo baseado no conteúdo, não estica */
 }
 
 .btn-project, .btn-github {

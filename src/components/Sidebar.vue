@@ -15,6 +15,8 @@
 
 </div>
 
+<Divider/>
+
     <nav>
    
  <ul>
@@ -78,16 +80,15 @@ import Divider from '../components/Divider.vue'
   align-items: center;
   gap: 10px;
   padding-bottom: 15px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid rgba(0, 238, 255, 0.2);
+  margin-bottom: 0;
 }
 
 .avatar {
   width: 80px;
   height: 80px;
   object-fit: cover;
-  border: 2px solid #00eeff;
-  box-shadow: 0 0 10px rgba(0, 238, 255, 0.7), 0 0 25px rgba(0, 238, 255, 0.2);
+  border: 1px solid rgba(0, 238, 255, 0.5);
+  box-shadow: 0 0 6px rgba(0, 238, 255, 0.3);
   border-radius: 0;
 }
 
@@ -99,6 +100,7 @@ import Divider from '../components/Divider.vue'
   color: #ffffff;
   text-shadow: 0 0 8px rgba(0, 238, 255, 0.6);
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .username {
@@ -134,11 +136,11 @@ import Divider from '../components/Divider.vue'
   -webkit-backdrop-filter: blur(10px);
 
   /* Borda ciano neon + brilho externo ao redor do painel */
-  border: 1px solid #00eeff;
+  border: 1px solid rgba(0, 238, 255, 0.45);
   box-shadow:
-    0 0 15px rgba(0, 238, 255, 0.5),
-    0 0 40px rgba(0, 238, 255, 0.15),
-    inset 0 0 30px rgba(0, 238, 255, 0.03);
+    0 0 12px rgba(0, 238, 255, 0.3),
+    0 0 25px rgba(0, 238, 255, 0.08),
+    inset 0 0 20px rgba(0, 238, 255, 0.02);
 
   color: white;
   padding: 20px;

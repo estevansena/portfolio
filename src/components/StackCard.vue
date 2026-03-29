@@ -1,5 +1,13 @@
 <template>
-  <div class="card">
+  <div 
+    class="card" 
+    ref="cardRef"
+    @mousemove="handleMouseMove"
+    @mouseleave="resetRotation"
+    :style="{ 
+      transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)` 
+    }"
+  >
     <div class="card-body">
       
       <div class="card-header">
@@ -26,6 +34,7 @@
 </template>
 
 <script setup>
+import { ref, reactive } from 'vue'
 
 defineProps({
   image: String,
@@ -36,6 +45,31 @@ defineProps({
     default: () => []
   },
 })
+
+const cardRef = ref(null)
+const rotation = reactive({ x: 0, y: 0 })
+
+const handleMouseMove = (e) => {
+  if (!cardRef.value) return
+  
+  const card = cardRef.value
+  const rect = card.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  
+  const rotateX = ((y - centerY) / centerY) * -12
+  const rotateY = ((x - centerX) / centerX) * 12
+  
+  rotation.x = rotateX
+  rotation.y = rotateY
+}
+
+const resetRotation = () => {
+  rotation.x = 0
+  rotation.y = 0
+}
 
 const tagColors = {
   javascript: { bg: '#F0DB4F', color: '#323330' },
@@ -97,18 +131,18 @@ const getTagStyle = (tag) => {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   overflow: hidden;
-  border: 1px solid #00eeff !important;
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 40px rgba(0, 238, 255, 0.1), inset 0 0 30px rgba(0, 238, 255, 0.02) !important;
-  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(0, 238, 255, 0.6) !important;
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2), inset 0 0 15px rgba(0, 238, 255, 0.01) !important;
+  transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   border-radius: 0;
+  transform-style: preserve-3d;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: #00eeff !important;
-  box-shadow: 0 0 25px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.15), inset 0 0 40px rgba(0, 238, 255, 0.04) !important;
+  border-color: rgba(0, 238, 255, 0.9) !important;
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 30px rgba(0, 238, 255, 0.1), inset 0 0 20px rgba(0, 238, 255, 0.02) !important;
 }
 
 .card-body {
@@ -132,6 +166,7 @@ const getTagStyle = (tag) => {
   object-fit: cover;
   border: 1px solid rgba(0, 238, 255, 0.5);
   box-shadow: 0 0 6px rgba(0, 238, 255, 0.4);
+  transform: translateZ(60px); /* Avatar salta mais que o título */
 }
 
 .card-title {
@@ -141,6 +176,7 @@ const getTagStyle = (tag) => {
   text-shadow: 0 0 8px rgba(0, 238, 255, 0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
+  transform: translateZ(50px);
 }
 
 .card-text {
@@ -149,6 +185,7 @@ const getTagStyle = (tag) => {
   margin-bottom: 15px;
   flex-grow: 1;
   letter-spacing: 0.3px;
+  transform: translateZ(30px);
 }
 
 .tags-container {
@@ -156,6 +193,7 @@ const getTagStyle = (tag) => {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 0;
+  transform: translateZ(40px);
 }
 
 .tag-badge {
