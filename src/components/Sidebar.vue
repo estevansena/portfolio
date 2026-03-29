@@ -35,7 +35,6 @@
 </ul>
      
 
-
       <!-- nova seção -->
       <h3>PROFESSIONAL</h3>
        <Divider/> 
@@ -64,7 +63,6 @@
       </ul>
 
 
-
     </nav>
   </aside>
 </template>
@@ -81,42 +79,67 @@ import Divider from '../components/Divider.vue'
   gap: 10px;
   padding-bottom: 15px;
   margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 238, 255, 0.2);
 }
 
 .avatar {
   width: 80px;
   height: 80px;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #00eeff;
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.7), 0 0 25px rgba(0, 238, 255, 0.2);
   border-radius: 0;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-}
+.info { display: flex; flex-direction: column; }
 
 .name {
   font-size: 16px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 238, 255, 0.6);
+  letter-spacing: 1px;
 }
 
 .username {
-  font-size: 14px;
-  opacity: 0.6;
+  font-size: 13px;
+  color: rgba(0, 238, 255, 0.5);
+  letter-spacing: 1px;
 }
 
+/* O painel em si: roxo escuro fundo + borda ciano brilhante */
 .sidebar {
   width: 200px;
   height: 800px;
-  background: rgba(15, 15, 15, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  /* Fundo: roxo-marinho profundo como na imagem */
+  background:
+    linear-gradient(rgba(13, 4, 30, 0.85), rgba(13, 4, 30, 0.85)),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 29px,
+      rgba(0, 238, 255, 0.04) 29px,
+      rgba(0, 238, 255, 0.04) 30px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 29px,
+      rgba(0, 238, 255, 0.04) 29px,
+      rgba(0, 238, 255, 0.04) 30px
+    );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Borda ciano neon + brilho externo ao redor do painel */
+  border: 1px solid #00eeff;
+  box-shadow:
+    0 0 15px rgba(0, 238, 255, 0.5),
+    0 0 40px rgba(0, 238, 255, 0.15),
+    inset 0 0 30px rgba(0, 238, 255, 0.03);
+
   color: white;
   padding: 20px;
   position: fixed;
@@ -125,73 +148,61 @@ import Divider from '../components/Divider.vue'
   border-radius: 0;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
+ul { list-style: none; padding: 0; }
 
 li {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 15px 0;
+  margin: 8px 0;
   padding: 8px 12px;
   border: 1px solid transparent;
   background: transparent;
-  transition: transform 0.15s ease-out, opacity 0.15s ease-out; /* Adicionado opacity na transição macia */
+  /* Transição só no movimento — cores mudam instantâneo pra não ter rastro */
+  transition: transform 0.15s ease-out;
   cursor: pointer;
-  opacity: 1;
+  border-radius: 0;
 }
 
-.icon {
-  font-size: 18px;
-  color: white;
-  transition: color 0.1s;
-}
+.icon { font-size: 18px; color: rgba(0, 238, 255, 0.5); transition: color 0.1s; }
 
 a {
-  color: white;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: color 0.1s;
   width: 100%;
 }
 
-/* 1. PÁGINA ATIVA (Foco total, brilho máximo 100%) */
+/* Página ATIVA — magenta/pink como acentuado na imagem */
 li:has(.router-link-active) {
-  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
-  background-size: 300% 100%;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
-  transform: translateX(6px);
-  opacity: 1; /* Força 100% de visibilidade */
+  background: rgba(255, 0, 102, 0.1);
+  border: 1px solid rgba(255, 0, 102, 0.7);
+  box-shadow: 0 0 10px rgba(255, 0, 102, 0.4), inset 0 0 12px rgba(255, 0, 102, 0.05);
+  transform: translateX(8px);
+}
+li:has(.router-link-active) .icon { color: #ff0066; }
+li:has(.router-link-active) a {
+  color: #ff0066;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 0, 102, 0.8);
+  letter-spacing: 0.5px;
 }
 
-li:has(.router-link-active) .icon { color: #ffffff; }
-li:has(.router-link-active) a { color: #ffffff; font-weight: 800; }
-
-/* 2. HOVER COMUM (Passar o mouse sobre outros links - leve transparência pra diferenciar) */
+/* Hover — ciano suave, consistente com a borda do painel */
 li:hover {
-  background: rgba(255, 255, 255, 0.4);
-  background-size: 300% 100%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  transform: translateX(6px);
-  opacity: 0.6; /* A opacidade reduzida dá o efeito de "passar o mouse" e confirma que não é a rota atual */
+  background: rgba(0, 238, 255, 0.05);
+  border: 1px solid rgba(0, 238, 255, 0.4);
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2);
+  transform: translateX(5px);
 }
-
-li:hover .icon { color: #ffffff; }
-li:hover a { color: #ffffff; font-weight: 800; }
-
-/* Feedback levíssimo ao encostar num link que JÁ ESTÁ ativo, só pra ele sentir o clique */
-li:has(.router-link-active):hover {
-  opacity: 0.8 !important;
-}
+li:hover .icon { color: #00eeff; }
+li:hover a { color: #00eeff; }
 
 h3 {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: #aaaaaa;
-  letter-spacing: 2px;
+  color: rgba(0, 238, 255, 0.5);
+  letter-spacing: 3px;
+  margin: 16px 0 4px 0;
 }
 </style>
