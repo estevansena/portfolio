@@ -24,18 +24,22 @@ defineProps({
 
 /* botão */
 .btn {
-  display: inline-block; /* 👈 importante */
-  padding: 10px 20px;    /* 👈 controla o tamanho */
-  font-size: 14px;
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 13px;
   font-family: sans-serif;
-  text-decoration: none;
-  color: white;
-  background: #2b2b2b;
-  border: 1px solid #444;
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: 2px;
+  text-decoration: none;
+  color: rgba(0, 238, 255, 0.9);
+  background: rgba(0, 238, 255, 0.04);
+  border: 1px solid rgba(0, 238, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.25);
   text-align: center;
   position: relative;
-  transition: all 0.35s;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0;
 }
 
 /* texto */
@@ -45,12 +49,11 @@ defineProps({
 }
 
 .btn:hover {
-  background: linear-gradient(90deg, #a100ff, #4a00ff, #a100ff);
-  background-size: 300% 100%;
-  color: #ffffff;
-  animation: moveGradient 3s ease-in-out infinite alternate;
-  box-shadow: 0 4px 15px rgba(161, 0, 255, 0.4);
-  opacity: 0.9;
+  background: rgba(255, 0, 102, 0.15);
+  color: #ff0066;
+  border-color: rgba(255, 0, 102, 0.7);
+  box-shadow: 0 0 15px rgba(255, 0, 102, 0.45);
+  text-shadow: 0 0 8px rgba(255, 0, 102, 0.8);
   transform: translateY(-2px);
 }
 

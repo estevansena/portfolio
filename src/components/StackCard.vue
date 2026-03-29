@@ -84,12 +84,21 @@ const getTagStyle = (tag) => {
 <style scoped>
 .card {
   width: 18rem;
-  background: rgba(15, 15, 15, 0.65) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  background:
+    linear-gradient(rgba(13, 4, 30, 0.85), rgba(13, 4, 30, 0.85)),
+    repeating-linear-gradient(
+      0deg, transparent, transparent 29px,
+      rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 29px,
+      rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
+    ) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid #00eeff !important;
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 40px rgba(0, 238, 255, 0.1), inset 0 0 30px rgba(0, 238, 255, 0.02) !important;
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -98,9 +107,8 @@ const getTagStyle = (tag) => {
 
 .card:hover {
   transform: translateY(-5px);
-  background: rgba(25, 25, 25, 0.8) !important;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.7) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: #00eeff !important;
+  box-shadow: 0 0 25px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.15), inset 0 0 40px rgba(0, 238, 255, 0.04) !important;
 }
 
 .card-body {
@@ -122,20 +130,25 @@ const getTagStyle = (tag) => {
   height: 40px;
   border-radius: 0;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0, 238, 255, 0.5);
+  box-shadow: 0 0 6px rgba(0, 238, 255, 0.4);
 }
 
 .card-title {
   font-size: 1.2rem;
   margin: 0;
   color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 238, 255, 0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .card-text {
   font-size: 0.9rem;
-  color: #777676;
+  color: rgba(0, 238, 255, 0.5);
   margin-bottom: 15px;
   flex-grow: 1;
+  letter-spacing: 0.3px;
 }
 
 .tags-container {
