@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Projects from '../views/Projects.vue'
-
+import TechStack from '../views/TechStack.vue'
 
 const routes = [
-    {
+  {
     path: '/Home',
     component: Home
   },
@@ -16,6 +16,10 @@ const routes = [
   {
     path: '/Projects',
     component: Projects
+  },
+  {
+    path: '/TechStack',
+    component: TechStack
   }
 
 ];

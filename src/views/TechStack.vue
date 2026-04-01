@@ -1,12 +1,10 @@
 <template>
   <div class="home">
-<h3>Abo<span class="sena">ut</span></h3>   
-<h2>Frontend Developer | Interactive UI</h2>
+<h3>Tech<span class="sena">Stack</span></h3>   
     <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
         <!-- linha separadora -->
       <Divider/>
-<h2>Projects</h2>
-<p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
+<h2>Professional Projects</h2>
 <div class="cards-container">
     
   <InfoCard
@@ -38,13 +36,32 @@
       githubLink="https://github.com/seuuser/projeto"
       projectLink="https://meuprojeto.com"
     />
-    
+
 </div>
-  <ViewMoreButton 
-    class="view-more"
-    url="https://github.com/estevansena"
-    text="View More"
-  />
+
+<Divider/>
+
+<h2>Personal Projects</h2>
+<div class="cards-container">
+    
+  <InfoCard
+      title="Portfolio"
+      text="Portfolio feito para apresentar meus projetos e habilidades"
+      :tags="['Vue.js', 'JavaScript', 'CSS', 'HTML']"
+      githubLink="https://github.com/estevansena/portfolio"
+    />
+
+  <InfoCard
+      title="Video Backup Downloader"
+      text="Ferramenta para download de vídeos, audios e thumbnails"
+      :tags="['Vue.js', 'Node.js', 'JavaScript']"
+      githubLink="https://github.com/seuuser/projeto"
+    />
+
+</div>
+
+
+
 
 </div>
 
@@ -53,7 +70,6 @@
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
 import Divider from '../components/Divider.vue'
-import ViewMoreButton from "../components/ViewMoreButton.vue"
 </script>
 
 <style scoped>

@@ -30,6 +30,11 @@
     <router-link to="/Projects">Projects</router-link>
   </li>
 
+   <li>
+    <ProjectOutlined class="icon"/>
+    <router-link to="/TechStack">Tech Stack</router-link>
+  </li>
+
   <li>
     <CoffeeOutlined class="icon"/>
     <router-link to="/About">About</router-link>
