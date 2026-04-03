@@ -60,6 +60,13 @@
 
 </div>
 
+<Divider/> 
+
+  <ViewMoreButton 
+    class="view-more"
+    url="/Home"
+    text="Go Home"
+  />
 
 
 
@@ -70,6 +77,7 @@
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
 import Divider from '../components/Divider.vue'
+import ViewMoreButton from "../components/ViewMoreButton.vue"
 </script>
 
 <style scoped>

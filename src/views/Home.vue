@@ -82,7 +82,7 @@
 
   <ViewMoreButton 
     class="view-more"
-    url="https://github.com/estevansena"
+    url="/TechStack"
     text="View More"
   />
 

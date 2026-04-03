@@ -40,11 +40,14 @@
     />
     
 </div>
+<Divider/> 
+
   <ViewMoreButton 
     class="view-more"
-    url="https://github.com/estevansena"
-    text="View More"
+    url="/Home"
+    text="Go Home"
   />
+
 
 </div>
 
