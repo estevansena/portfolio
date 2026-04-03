@@ -164,5 +164,7 @@ canvas {
   top: 0;
   left: 0;
   background: #000;
+  z-index: -1;
+  pointer-events: none;
 }
 </style>

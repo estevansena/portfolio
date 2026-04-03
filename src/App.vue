@@ -1,5 +1,7 @@
 <template>
   <div class="layout">
+      <CanvasBackground />
+
     <Sidebar />
 
     <main class="content">
@@ -14,6 +16,7 @@
 
 <script setup>
 import Sidebar from './components/Sidebar.vue'
+import CanvasBackground from "./components/CanvasBackground.vue";
 </script>
 
 <style>
