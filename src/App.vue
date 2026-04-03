@@ -1,9 +1,11 @@
 <template>
   <div class="layout">
-      <CanvasBackground />
+    <CanvasBackground />
 
+    <!-- HEADER -->
     <Sidebar />
 
+    <!-- CONTEÚDO -->
     <main class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -22,14 +24,24 @@ import CanvasBackground from "./components/CanvasBackground.vue";
 <style>
 .layout {
   display: flex;
+  flex-direction: column; /* 🔥 agora é vertical */
 }
 
+body {
+  overflow-x: hidden;
+}
+
+/* CONTEÚDO */
 .content {
-  margin-left: 220px;
   width: 100%;
+  min-height: calc(100vh - 80px); /* altura do header */
+  
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start; /* 👈 esquerda */
+  align-items: center;         /* 👈 centro vertical */
+
+  padding-left: 80px;          /* ajuste fino da margem */
+  padding-right: 20px;
 }
 
 /* fade */

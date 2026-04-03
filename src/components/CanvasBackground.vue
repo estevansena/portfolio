@@ -6,154 +6,198 @@
 import { onMounted, onBeforeUnmount, ref } from "vue";
 
 const canvas = ref(null);
-let ctx;
+let ctx, w, h;
 
-let w, h;
+// CONFIG
+const mainParticles = [];
+const cornerParticles = [];
 
+const MAIN_COUNT = 120;
+const CORNER_COUNT = 12;
+
+const MAX_DIST = 120;
+
+// CORES
+const CYAN = [0, 255, 255];
+const PINK = [255, 0, 102];
+
+let mouse = { x: -9999, y: -9999 };
+let animationFrame;
+
+// resize
 function resize() {
   w = canvas.value.width = window.innerWidth;
   h = canvas.value.height = window.innerHeight;
 }
 
-// CONFIG
-const particles = [];
-const PARTICLE_COUNT = 120;
-const MAX_DIST = 120;
-const AREA_START = 0.6;
-
-let mouse = { x: -9999, y: -9999 };
-
-function handleMouseMove(e) {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
+// 🔥 LIMITE CURVO (ajuste fino aqui se quiser)
+function getLimitX(y) {
+  const t = y / h;
+  return w * (0.55 + 0.15 * Math.sin(t * Math.PI));
 }
 
-let animationFrame;
-let time = 0;
+// init
+function init() {
+  mainParticles.length = 0;
+  cornerParticles.length = 0;
 
-function initParticles() {
-  particles.length = 0;
+  // direita (já nasce respeitando o limite)
+  for (let i = 0; i < MAIN_COUNT; i++) {
+    const y = Math.random() * h;
+    const minX = getLimitX(y);
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push({
-      x: w * AREA_START + Math.random() * (w * (1 - AREA_START)),
-      y: Math.random() * h,
+    mainParticles.push({
+      x: minX + Math.random() * (w - minX),
+      y,
       vx: (Math.random() - 0.5) * 0.5,
       vy: (Math.random() - 0.5) * 0.5,
-      hueShift: Math.random()
+      t: Math.random()
+    });
+  }
+
+  // canto inferior esquerdo
+  for (let i = 0; i < CORNER_COUNT; i++) {
+    cornerParticles.push({
+      x: Math.random() * (w * 0.12),
+      y: h * 0.88 + Math.random() * (h * 0.12),
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      t: Math.random()
     });
   }
 }
 
+// update MAIN com limite curvo
+function updateMain(group) {
+  group.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    const limitX = getLimitX(p.y);
+
+    // respeita curva
+    if (p.x < limitX) {
+      p.x = limitX;
+      p.vx *= -1;
+    }
+
+    if (p.x > w) p.vx *= -1;
+    if (p.y < 0 || p.y > h) p.vy *= -1;
+
+    p.t += 0.001;
+    if (p.t > 1) p.t = 0;
+  });
+}
+
+// update canto
+function update(group, bounds) {
+  group.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < bounds.minX || p.x > bounds.maxX) p.vx *= -1;
+    if (p.y < bounds.minY || p.y > bounds.maxY) p.vy *= -1;
+
+    p.t += 0.001;
+    if (p.t > 1) p.t = 0;
+  });
+}
+
+// linhas
+function drawLines(group) {
+  for (let i = 0; i < group.length; i++) {
+    for (let j = i + 1; j < group.length; j++) {
+      const dx = group[i].x - group[j].x;
+      const dy = group[i].y - group[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < MAX_DIST) {
+        const alpha = 1 - dist / MAX_DIST;
+        const color = (group[i].t + group[j].t) / 2 > 0.7 ? PINK : CYAN;
+
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha * 0.6})`;
+        ctx.lineWidth = 1;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+
+        ctx.moveTo(group[i].x, group[i].y);
+        ctx.lineTo(group[j].x, group[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+// pontos
+function drawPoints(group) {
+  group.forEach(p => {
+    const color = p.t > 0.7 ? PINK : CYAN;
+
+    const dx = p.x - mouse.x;
+    const dy = p.y - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    const glow = dist < 120 ? 30 : 12;
+
+    ctx.beginPath();
+    ctx.fillStyle = `rgb(${color[0]},${color[1]},${color[2]})`;
+    ctx.shadowBlur = glow;
+    ctx.shadowColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
+// loop
 function draw() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, w, h);
 
   ctx.globalCompositeOperation = "lighter";
 
-  time += 0.01;
+  updateMain(mainParticles);
 
-  // atualizar partículas
-  particles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-
-    let minX = w * AREA_START;
-    let maxX = w;
-
-    if (p.x < minX) {
-      p.x = minX;
-      p.vx *= -1;
-    }
-    if (p.x > maxX) {
-      p.x = maxX;
-      p.vx *= -1;
-    }
-
-    if (p.y < 0 || p.y > h) p.vy *= -1;
-
-    p.hueShift += 0.001;
-    if (p.hueShift > 1) p.hueShift = 0;
+  update(cornerParticles, {
+    minX: 0,
+    maxX: w * 0.12,
+    minY: h * 0.88,
+    maxY: h
   });
 
-  // conexões
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
+  drawLines(mainParticles);
+  drawLines(cornerParticles);
 
-      let dx = particles[i].x - particles[j].x;
-      let dy = particles[i].y - particles[j].y;
-      let dist = Math.sqrt(dx * dx + dy * dy);
-
-      if (dist < MAX_DIST) {
-        let alpha = 1 - dist / MAX_DIST;
-
-        let mix = (particles[i].hueShift + particles[j].hueShift) / 2;
-
-        let r = mix > 0.7 ? 255 : 0;
-        let g = mix > 0.7 ? 0 : 255;
-        let b = 255;
-
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.7})`;
-        ctx.lineWidth = 1;
-
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `rgb(${r},${g},${b})`;
-
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  // partículas
-  particles.forEach(p => {
-    let isPink = p.hueShift > 0.7;
-
-    let r = isPink ? 255 : 0;
-    let g = isPink ? 0 : 255;
-    let b = 255;
-
-    let dx = p.x - mouse.x;
-    let dy = p.y - mouse.y;
-    let dist = Math.sqrt(dx * dx + dy * dy);
-
-    let glow = dist < 120 ? 35 : 15;
-
-    ctx.beginPath();
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
-
-    ctx.shadowBlur = glow;
-    ctx.shadowColor = `rgb(${r},${g},${b})`;
-
-    ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
-    ctx.fill();
-  });
+  drawPoints(mainParticles);
+  drawPoints(cornerParticles);
 
   ctx.globalCompositeOperation = "source-over";
 
   animationFrame = requestAnimationFrame(draw);
 }
 
+// lifecycle
 onMounted(() => {
   ctx = canvas.value.getContext("2d");
 
   resize();
-  initParticles();
+  init();
 
   window.addEventListener("resize", () => {
     resize();
-    initParticles();
+    init();
   });
 
-  window.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("mousemove", e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
   draw();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("mousemove", handleMouseMove);
   cancelAnimationFrame(animationFrame);
 });
 </script>

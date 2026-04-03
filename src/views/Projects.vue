@@ -3,8 +3,6 @@
 <h3>Proje<span class="sena">cts</span></h3>   
     <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
         <!-- linha separadora -->
-      <Divider/>
-<h2>Professional Projects</h2>
 <div class="cards-container">
     
   <InfoCard
@@ -41,43 +39,12 @@
 
 <Divider/>
 
-<h2>Personal Projects</h2>
-<div class="cards-container">
-    
-  <InfoCard
-      title="Portfolio"
-      text="Portfolio feito para apresentar meus projetos e habilidades"
-      :tags="['Vue.js', 'JavaScript', 'CSS', 'HTML']"
-      githubLink="https://github.com/estevansena/portfolio"
-    />
-
-  <InfoCard
-      title="Video Backup Downloader"
-      text="Ferramenta para download de vídeos, audios e thumbnails"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-    />
-
-</div>
-
-<Divider/> 
-
-  <ViewMoreButton 
-    class="view-more"
-    url="/Home"
-    text="Go Home"
-  />
-
-
-
 </div>
 
 </template>
 
 <script setup>
 import InfoCard from '../components/InfoCard.vue'
-import Divider from '../components/Divider.vue'
-import ViewMoreButton from "../components/ViewMoreButton.vue"
 </script>
 
 <style scoped>
@@ -102,15 +69,6 @@ h3 {
   text-shadow: 0 0 20px rgba(255, 0, 102, 0.8), 0 0 50px rgba(255, 0, 102, 0.3);
 }
 
-h2 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(0, 238, 255, 0.7);
-  margin: 0 0 20px 0;
-}
-
 p {
   font-size: 0.95rem;
   color: rgba(0, 238, 255, 0.55);
@@ -121,11 +79,6 @@ p {
   padding: 12px 18px;
   background: rgba(0, 238, 255, 0.03);
   border-left: 2px solid rgba(0, 238, 255, 0.4);
-}
-
-.view-more {
-  display: block;
-  margin-top: 20px;
 }
 
 .cards-container {
