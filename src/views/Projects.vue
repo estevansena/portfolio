@@ -1,94 +1,20 @@
 <template>
-  <div class="home">
-<h3>Proje<span class="sena">cts</span></h3>   
-    <p>Personal projects and work developed in professional environments, including real-world applications and hands-on experience.</p>
-        <!-- linha separadora -->
-<div class="cards-container">
+  <div class="hero">
     
-  <InfoCard
-      title="Portfolio"
-      text="Portfolio feito para apresentar meus projetos e habilidades"
-      :tags="['Vue.js', 'JavaScript', 'CSS', 'HTML']"
-      githubLink="https://github.com/estevansena/portfolio"
+    <!-- 👇 seu h3 como componente -->
+    <SectionTitle 
+      firstName="Pro"
+      lastName="jects"
+      subtitle="Frontend Developer | Interactive UI" 
     />
 
-  <InfoCard
-      title="Video Backup Downloader"
-      text="Ferramenta para download de vídeos, audios e thumbnails"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-    />
-
-  <InfoCard
-      title="Meu Projeto"
-      text="Projeto feito com Vue e Node.js"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
-    />
-
-  <InfoCard
-      title="Meu Projeto"
-      text="Projeto feito com Vue e Node.js"
-      :tags="['Vue.js', 'Node.js', 'JavaScript']"
-      githubLink="https://github.com/seuuser/projeto"
-      projectLink="https://meuprojeto.com"
-    />
-
-</div>
-
-<Divider/>
-
-</div>
-
+  </div>
 </template>
 
 <script setup>
-import InfoCard from '../components/InfoCard.vue'
+import SectionTitle from '../components/SectionTitle.vue'
 </script>
 
 <style scoped>
-.home {
-  margin-top: 15px;
-  padding-bottom: 50px;
-}
 
-h3 {
-  font-size: 3rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(0, 238, 255, 0.6), 0 0 60px rgba(0, 238, 255, 0.2);
-  margin: 0 0 5px 0;
-}
-
-.sena {
-  color: #ff0066;
-  -webkit-text-fill-color: #ff0066;
-  text-shadow: 0 0 20px rgba(255, 0, 102, 0.8), 0 0 50px rgba(255, 0, 102, 0.3);
-}
-
-p {
-  font-size: 0.95rem;
-  color: rgba(0, 238, 255, 0.55);
-  line-height: 1.8;
-  letter-spacing: 0.3px;
-  margin: 8px 0 20px 0;
-  max-width: 700px;
-  padding: 12px 18px;
-  background: rgba(0, 238, 255, 0.03);
-  border-left: 2px solid rgba(0, 238, 255, 0.4);
-}
-
-.cards-container {
-  display: flex;
-  flex-wrap: nowrap;
-  width: calc(100% - 20px);
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: visible;
-  padding-top: 10px;
-  padding-bottom: 5px;
-}
 </style>

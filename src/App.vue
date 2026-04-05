@@ -2,8 +2,11 @@
   <div class="layout">
     <CanvasBackground />
 
-    <!-- HEADER -->
-    <Sidebar />
+     <header class="header-menu">
+
+    <HeaderMenu />
+      </header>
+
 
     <!-- CONTEÚDO -->
     <main class="content">
@@ -17,7 +20,7 @@
 </template>
 
 <script setup>
-import Sidebar from './components/Sidebar.vue'
+import HeaderMenu from './components/HeaderMenu.vue'
 import CanvasBackground from "./components/CanvasBackground.vue";
 </script>
 
@@ -25,6 +28,16 @@ import CanvasBackground from "./components/CanvasBackground.vue";
 .layout {
   display: flex;
   flex-direction: column; /* 🔥 agora é vertical */
+}
+
+.header-menu {
+  width: 100%;
+  height: 80px;        /* altura do header */
+  display: flex;
+  align-items: center;
+  padding-left: 29px;  /* 🔥 distância da margem esquerda */
+  padding-right: 30px;
+  background: transparent;
 }
 
 body {
@@ -41,7 +54,7 @@ body {
   align-items: center;         /* 👈 centro vertical */
 
   padding-left: 80px;          /* ajuste fino da margem */
-  padding-right: 20px;
+  padding-right: 30px;
 }
 
 /* fade */
