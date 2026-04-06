@@ -1,15 +1,8 @@
 <template>
-  <div class="layout">
+  <div class="app">
     <CanvasBackground />
-
-     <header class="header-menu">
-
     <HeaderMenu />
-      </header>
-
-
-    <!-- CONTEÚDO -->
-    <main class="content">
+    <main class="main">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" :key="$route.fullPath" />
@@ -21,46 +14,67 @@
 
 <script setup>
 import HeaderMenu from './components/HeaderMenu.vue'
-import CanvasBackground from "./components/CanvasBackground.vue";
+import CanvasBackground from './components/CanvasBackground.vue'
 </script>
 
 <style>
-.layout {
-  display: flex;
-  flex-direction: column; /* 🔥 agora é vertical */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.header-menu {
-  width: 100%;
-  height: 80px;        /* altura do header */
-  display: flex;
-  align-items: center;
-  padding-left: 29px;  /* 🔥 distância da margem esquerda */
-  padding-right: 30px;
-  background: transparent;
-}
-
-body {
+html, body {
+  height: 100%;
   overflow-x: hidden;
 }
 
-/* CONTEÚDO */
-.content {
-  width: 100%;
-  min-height: calc(100vh - 80px); /* altura do header */
-  
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  justify-content: flex-start; /* 👈 esquerda */
-  align-items: center;         /* 👈 centro vertical */
-
-  padding-left: 80px;          /* ajuste fino da margem */
-  padding-right: 30px;
+  flex-direction: column;
 }
 
-/* fade */
+.main {
+  flex: 1;
+  padding-left: 60px;
+  padding-right: 40px;
+  padding-top: 70px;
+  display: flex;
+  align-items: center;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .main {
+    padding-left: 40px;
+    padding-right: 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .main {
+    padding-left: 20px;
+    padding-right: 16px;
+    padding-top: 70px;
+    align-items: flex-start;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .main {
+    padding-left: 16px;
+    padding-right: 12px;
+  }
+}
+
+/* Fade transition */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,

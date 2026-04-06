@@ -10,37 +10,24 @@
   >
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
+      <p class="card-text">{{ text }}</p>
 
-      <p class="card-text">
-        {{ text }}
-      </p>
-
-      <div v-if="tags && tags.length" class="tags-container">
+      <div v-if="tags && tags.length" class="tags">
         <span 
           v-for="(tag, index) in tags" 
           :key="index" 
-          class="tag-badge" 
+          class="tag" 
           :style="getTagStyle(tag)"
         >
           {{ tag }}
         </span>
       </div>
 
-      <div class="actions-container">
-        <a 
-          v-if="githubLink" 
-          :href="githubLink" 
-          target="_blank" 
-          class="btn btn-github"
-        >
+      <div class="actions">
+        <a v-if="githubLink" :href="githubLink" target="_blank" class="btn btn-github">
           <GithubOutlined /> GitHub
         </a>
-        <a 
-          v-if="projectLink" 
-          :href="projectLink" 
-          target="_blank" 
-          class="btn btn-project"
-        >
+        <a v-if="projectLink" :href="projectLink" target="_blank" class="btn btn-project">
           <LinkOutlined /> View Online
         </a>
       </div>
@@ -55,10 +42,7 @@ import { GithubOutlined, LinkOutlined } from '@ant-design/icons-vue'
 defineProps({
   title: String,
   text: String,
-  tags: {
-    type: Array,
-    default: () => []
-  },
+  tags: { type: Array, default: () => [] },
   githubLink: String,
   projectLink: String
 })
@@ -67,7 +51,7 @@ const cardRef = ref(null)
 const rotation = reactive({ x: 0, y: 0 })
 
 const handleMouseMove = (e) => {
-  if (!cardRef.value) return
+  if (!cardRef.value || window.innerWidth < 768) return
   
   const card = cardRef.value
   const rect = card.getBoundingClientRect()
@@ -76,14 +60,8 @@ const handleMouseMove = (e) => {
   const centerX = rect.width / 2
   const centerY = rect.height / 2
   
-  // Calcula a rotação (máximo 15 graus)
-  // Eixo Y rotaciona baseado no movimento X (movimento horizontal inclina verticalmente)
-  // Eixo X rotaciona baseado no movimento Y (movimento vertical inclina horizontalmente)
-  const rotateX = ((y - centerY) / centerY) * -12
-  const rotateY = ((x - centerX) / centerX) * 12
-  
-  rotation.x = rotateX
-  rotation.y = rotateY
+  rotation.x = ((y - centerY) / centerY) * -12
+  rotation.y = ((x - centerX) / centerX) * 12
 }
 
 const resetRotation = () => {
@@ -92,7 +70,6 @@ const resetRotation = () => {
 }
 
 const tagColors = {
-  // ... (rest of colors)
   javascript: { bg: '#F0DB4F', color: '#323330' },
   python: { bg: '#3776AB', color: '#ffffff' },
   'node.js': { bg: '#339939', color: '#ffffff' },
@@ -110,37 +87,29 @@ const tagColors = {
   'c++': { bg: '#f34b7d', color: '#ffffff' }
 }
 
-const hexToRgba = (hex, alpha) => {
-  if (!hex || hex.length !== 7) return hex;
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
-
 const getTagStyle = (tag) => {
-  const norm = tag.toLowerCase();
+  const norm = tag.toLowerCase()
   if (tagColors[norm]) {
-    const baseColor = tagColors[norm].bg;
     return { 
       backgroundColor: 'rgba(255, 255, 255, 0.05)', 
-      color: baseColor,
-      border: `1px solid rgba(255, 255, 255, 0.1)`
-    };
+      color: tagColors[norm].bg,
+      border: '1px solid rgba(255, 255, 255, 0.1)'
+    }
   }
   return { 
     backgroundColor: 'rgba(255, 255, 255, 0.05)', 
     color: '#aaaaaa',
     border: '1px solid rgba(255, 255, 255, 0.1)'
-  };
+  }
 }
 </script>
 
 <style scoped>
 .card {
-  width: 18rem;
+  width: 100%;
+  max-width: 320px;
   background:
-    linear-gradient(rgba(13, 4, 30, 0.85), rgba(13, 4, 30, 0.85)),
+    linear-gradient(rgba(13, 4, 30, 0.9), rgba(13, 4, 30, 0.9)),
     repeating-linear-gradient(
       0deg, transparent, transparent 29px,
       rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
@@ -148,104 +117,108 @@ const getTagStyle = (tag) => {
     repeating-linear-gradient(
       90deg, transparent, transparent 29px,
       rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
-    ) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  overflow: hidden;
-  border: 1px solid rgba(0, 238, 255, 0.6) !important;
-  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2), inset 0 0 15px rgba(0, 238, 255, 0.01) !important;
+    );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 238, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2);
   transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0;
-  transform-style: preserve-3d; /* Permite profundidade nos elementos filhos se desejado */
 }
 
 .card:hover {
-  border-color: rgba(0, 238, 255, 0.9) !important;
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 30px rgba(0, 238, 255, 0.1), inset 0 0 20px rgba(0, 238, 255, 0.02) !important;
+  border-color: rgba(0, 238, 255, 0.9);
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
 }
 
 .card-body {
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  gap: 12px;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  margin: 0 0 6px 0;
-  color: #ffffff;
+  font-size: 1.1rem;
+  color: #fff;
   text-shadow: 0 0 8px rgba(0, 238, 255, 0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
-  transform: translateZ(50px); /* Faz o título saltar para frente */
 }
 
 .card-text {
   font-size: 0.9rem;
-  color: rgba(0, 238, 255, 0.5);
-  margin-bottom: 15px;
-  flex-grow: 1;
-  letter-spacing: 0.3px;
-  transform: translateZ(30px); /* Texto fica em uma camada intermediária */
+  color: rgba(0, 238, 255, 0.6);
+  line-height: 1.5;
 }
 
-.tags-container {
+.tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 20px;
 }
 
-.tag-badge {
+.tag {
   font-size: 0.65rem;
   font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 0;
-  letter-spacing: 0.5px;
+  padding: 4px 10px;
   text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 0.5px;
 }
 
-.actions-container {
+.actions {
   display: flex;
   gap: 10px;
-  margin-top: auto;
-  flex-wrap: nowrap;
-  transform: translateZ(40px); /* Botoes saltam um pouco mais que o texto */
+  margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 10px 16px;
   color: rgba(0, 238, 255, 0.8);
   text-decoration: none;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: 0;
-  transition: all 0.2s ease-in-out;
-  white-space: nowrap; /* impede quebra de linha */
-  flex: 0 0 auto; /* tamanho fixo baseado no conteúdo, não estica */
-}
-
-.btn-project, .btn-github {
-  background: rgba(0, 238, 255, 0.04);
+  transition: all 0.2s ease;
   border: 1px solid rgba(0, 238, 255, 0.35);
+  background: rgba(0, 238, 255, 0.04);
 }
 
-.btn-project:hover, .btn-github:hover {
+.btn:hover {
   background: rgba(255, 0, 102, 0.15);
   color: #ff0066;
   border-color: rgba(255, 0, 102, 0.7);
   box-shadow: 0 0 12px rgba(255, 0, 102, 0.4);
-  text-shadow: 0 0 8px rgba(255, 0, 102, 0.8);
-  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    justify-content: center;
+  }
 }
 </style>

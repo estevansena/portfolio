@@ -9,21 +9,18 @@
     }"
   >
     <div class="card-body">
-      
       <div class="card-header">
         <img v-if="image" :src="image" class="avatar" alt="Avatar" />
         <h5 class="card-title">{{ title }}</h5>
       </div>
 
-      <p class="card-text">
-        {{ text }}
-      </p>
+      <p class="card-text">{{ text }}</p>
 
-      <div v-if="tags && tags.length" class="tags-container">
+      <div v-if="tags && tags.length" class="tags">
         <span 
           v-for="(tag, index) in tags" 
           :key="index" 
-          class="tag-badge" 
+          class="tag" 
           :style="getTagStyle(tag)"
         >
           {{ tag }}
@@ -40,17 +37,14 @@ defineProps({
   image: String,
   title: String,
   text: String,
-  tags: {
-    type: Array,
-    default: () => []
-  },
+  tags: { type: Array, default: () => [] }
 })
 
 const cardRef = ref(null)
 const rotation = reactive({ x: 0, y: 0 })
 
 const handleMouseMove = (e) => {
-  if (!cardRef.value) return
+  if (!cardRef.value || window.innerWidth < 768) return
   
   const card = cardRef.value
   const rect = card.getBoundingClientRect()
@@ -59,11 +53,8 @@ const handleMouseMove = (e) => {
   const centerX = rect.width / 2
   const centerY = rect.height / 2
   
-  const rotateX = ((y - centerY) / centerY) * -12
-  const rotateY = ((x - centerX) / centerX) * 12
-  
-  rotation.x = rotateX
-  rotation.y = rotateY
+  rotation.x = ((y - centerY) / centerY) * -12
+  rotation.y = ((x - centerX) / centerX) * 12
 }
 
 const resetRotation = () => {
@@ -89,37 +80,29 @@ const tagColors = {
   'c++': { bg: '#f34b7d', color: '#ffffff' }
 }
 
-const hexToRgba = (hex, alpha) => {
-  if (!hex || hex.length !== 7) return hex;
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
-
 const getTagStyle = (tag) => {
-  const norm = tag.toLowerCase();
+  const norm = tag.toLowerCase()
   if (tagColors[norm]) {
-    const baseColor = tagColors[norm].bg;
     return { 
       backgroundColor: 'rgba(255, 255, 255, 0.05)', 
-      color: baseColor,
-      border: `1px solid rgba(255, 255, 255, 0.1)`
-    };
+      color: tagColors[norm].bg,
+      border: '1px solid rgba(255, 255, 255, 0.1)'
+    }
   }
   return { 
     backgroundColor: 'rgba(255, 255, 255, 0.05)', 
     color: '#aaaaaa',
     border: '1px solid rgba(255, 255, 255, 0.1)'
-  };
+  }
 }
 </script>
 
 <style scoped>
 .card {
-  width: 18rem;
+  width: 100%;
+  max-width: 320px;
   background:
-    linear-gradient(rgba(13, 4, 30, 0.85), rgba(13, 4, 30, 0.85)),
+    linear-gradient(rgba(13, 4, 30, 0.9), rgba(13, 4, 30, 0.9)),
     repeating-linear-gradient(
       0deg, transparent, transparent 29px,
       rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
@@ -127,90 +110,84 @@ const getTagStyle = (tag) => {
     repeating-linear-gradient(
       90deg, transparent, transparent 29px,
       rgba(0, 238, 255, 0.03) 29px, rgba(0, 238, 255, 0.03) 30px
-    ) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  overflow: hidden;
-  border: 1px solid rgba(0, 238, 255, 0.6) !important;
-  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2), inset 0 0 15px rgba(0, 238, 255, 0.01) !important;
+    );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 238, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.2);
   transition: transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0;
-  transform-style: preserve-3d;
 }
 
 .card:hover {
-  border-color: rgba(0, 238, 255, 0.9) !important;
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.35), 0 0 30px rgba(0, 238, 255, 0.1), inset 0 0 20px rgba(0, 238, 255, 0.02) !important;
+  border-color: rgba(0, 238, 255, 0.9);
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
 }
 
 .card-body {
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  gap: 12px;
 }
 
 .card-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 0;
+  width: 44px;
+  height: 44px;
   object-fit: cover;
   border: 1px solid rgba(0, 238, 255, 0.5);
-  box-shadow: 0 0 6px rgba(0, 238, 255, 0.4);
-  transform: translateZ(60px); /* Avatar salta mais que o título */
+  box-shadow: 0 0 8px rgba(0, 238, 255, 0.4);
 }
 
 .card-title {
-  font-size: 1.2rem;
-  margin: 0;
-  color: #ffffff;
+  font-size: 1.1rem;
+  color: #fff;
   text-shadow: 0 0 8px rgba(0, 238, 255, 0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
-  transform: translateZ(50px);
 }
 
 .card-text {
   font-size: 0.9rem;
-  color: rgba(0, 238, 255, 0.5);
-  margin-bottom: 15px;
-  flex-grow: 1;
-  letter-spacing: 0.3px;
-  transform: translateZ(30px);
+  color: rgba(0, 238, 255, 0.6);
+  line-height: 1.5;
 }
 
-.tags-container {
+.tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 0;
-  transform: translateZ(40px);
 }
 
-.tag-badge {
+.tag {
   font-size: 0.65rem;
   font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 0;
-  letter-spacing: 0.5px;
+  padding: 4px 10px;
   text-transform: uppercase;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: 0.5px;
 }
 
-.actions-container {
-  display: flex;
-  gap: 10px;
-  margin-top: auto;
+/* Mobile */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
 }
-
-
 </style>

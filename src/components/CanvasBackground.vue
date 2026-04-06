@@ -210,5 +210,6 @@ canvas {
   background: #000;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
 </style>
