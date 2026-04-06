@@ -4,78 +4,160 @@
       {{ firstName }}<span class="highlight">{{ lastName }}</span>
     </h3>
 
-    <!-- 👇 agora dinâmico -->
-    <p v-if="subtitle" class="subtitle">
-      {{ subtitle }}
-    </p>
+    <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
+
+    <div class="items-list">
+      <a
+        v-for="(item, i) in scrollItems"
+        :key="i"
+        :href="item.url || '#'"
+        class="scroll-item"
+        :class="{ active: activeIndex === i }"
+        @mouseenter="setActive(i)"
+      >
+        <!-- Ícone opcional -->
+        <FontAwesomeIcon v-if="item.icon" :icon="item.icon" class="icon" />
+
+        <!-- Label -->
+        <span>{{ item.label || item }}</span>
+      </a>
+    </div>
+
+    <!-- Texto com efeito typing -->
+    <p class="typing-text">{{ displayedText }}</p>
   </div>
 </template>
 
 <script setup>
-defineProps({
-  firstName: {
-    type: String,
-    default: 'Estevan'
-  },
-  lastName: {
-    type: String,
-    default: 'Sena'
-  },
-  subtitle: {                // 👈 NOVO PROP
-    type: String,
-    default: ''
-  }
+import { ref, computed } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+const props = defineProps({
+  firstName: { type: String, default: 'Estevan' },
+  lastName: { type: String, default: 'Sena' },
+  subtitle: { type: String, default: '' },
+  items: { type: Array, default: () => [] }, // cada item pode ter { label, description, url, icon }
+  count: { type: Number, default: 0 }
 })
+
+// Computa os itens de scroll
+const scrollItems = computed(() => {
+  if (props.items.length) return props.items
+  return Array.from({ length: props.count }, (_, i) => ({
+    label: `Item ${i + 1}`,
+    description: `Descrição do Item ${i + 1}`,
+  }))
+})
+
+const displayedText = ref('')
+const activeIndex = ref(0) // índice do item ativo
+
+// Função de typing
+let typingTimeout
+function startTyping(text) {
+  clearTimeout(typingTimeout)
+  displayedText.value = ''
+  let index = 0
+
+  function typeChar() {
+    if (index < text.length) {
+      displayedText.value += text[index]
+      index++
+      typingTimeout = setTimeout(typeChar, 40) // velocidade do typing
+    }
+  }
+
+  typeChar()
+}
+
+// Define o item ativo
+function setActive(index) {
+  activeIndex.value = index
+  startTyping(scrollItems.value[index].description)
+}
+
+// Inicializa com o primeiro item ativo
+if (scrollItems.value.length) {
+  setActive(0)
+}
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 .title-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-/* ===== NOME ===== */
 .title {
+  font-family: 'Orbitron', sans-serif;
   font-size: 6rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 4px;
-  color: #ffffff;
-  text-shadow: 
-    0 0 60px rgba(0, 238, 255, 0.2);
+  color: #fff;
   margin: 0 0 5px 0;
 }
 
-.highlight {
-  color: #ff0066;
-  -webkit-text-fill-color: #ff0066;
-  text-shadow: 
-    0 0 50px rgba(255, 0, 102, 0.3);
-}
+.highlight { color: #ff0066; }
 
-/* ===== SUBTITLE ===== */
 .subtitle {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-
   color: rgba(0, 238, 255, 0.7);
-
   margin-top: 10px;
   max-width: 500px;
-
   padding: 12px 18px;
   background: rgba(0, 238, 255, 0.03);
   border-left: 2px solid rgba(0, 238, 255, 0.4);
-
-  transition: all 0.3s ease;
 }
 
-.subtitle:hover {
-  color: rgba(0, 238, 255, 1);
-  text-shadow: 0 0 15px rgba(0,238,255,0.6);
+.items-list {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-  border-left: 2px solid rgba(0, 238, 255, 0.8);
+.scroll-item {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scroll-item:hover {
+  color: #00eeff; /* hover azul */
+}
+
+/* Item ativo */
+.scroll-item.active {
+  color: #ff0066; /* rosa quando ativo */
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: #0ff; /* ciano */
+}
+
+.typing-text {
+  margin-top: 15px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(0, 238, 255, 0.8);
+  min-height: 24px; /* mantém espaço mesmo sem texto */
+  white-space: pre-wrap;
 }
 </style>

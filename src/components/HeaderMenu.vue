@@ -35,11 +35,15 @@
 </script>
 
 <style scoped>
+/* 👇 IMPORTA A FONTE */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
+
 .headermenu {
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
+  font-family: 'Orbitron', sans-serif;
   padding: 0 40px;
 }
 
@@ -48,7 +52,7 @@ ul {
   padding: 0; 
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px; /* mais espaço, igual da imagem */
 }
 
 li {
@@ -63,8 +67,13 @@ li {
 }
 
 a {
-  color: rgba(0, 238, 255, 0.5); 
+  color: #ffffff;
   text-decoration: none;
+
+  /* 👇 ESSENCIAL pra ficar igual */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 /* ativo */
@@ -77,5 +86,6 @@ li:has(.router-link-active) a {
 /* hover */
 li:hover a { 
   color: #00eeff; 
+  text-shadow: 0 0 8px rgba(0, 238, 255, 0.8);
 }
 </style>
