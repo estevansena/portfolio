@@ -4,8 +4,6 @@
       {{ firstName }}<span class="highlight">{{ lastName }}</span>
     </h3>
 
-    <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
-
     <div class="items-list">
       <a
         v-for="(item, i) in scrollItems"
@@ -35,8 +33,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 const props = defineProps({
   firstName: { type: String, default: 'Estevan' },
   lastName: { type: String, default: 'Sena' },
-  subtitle: { type: String, default: '' },
-  items: { type: Array, default: () => [] }, // cada item pode ter { label, description, url, icon }
+  items: { type: Array, default: () => [] },
   count: { type: Number, default: 0 }
 })
 
@@ -50,7 +47,7 @@ const scrollItems = computed(() => {
 })
 
 const displayedText = ref('')
-const activeIndex = ref(0) // índice do item ativo
+const activeIndex = ref(0)
 
 // Função de typing
 let typingTimeout
@@ -63,7 +60,7 @@ function startTyping(text) {
     if (index < text.length) {
       displayedText.value += text[index]
       index++
-      typingTimeout = setTimeout(typeChar, 40) // velocidade do typing
+      typingTimeout = setTimeout(typeChar, 40)
     }
   }
 
@@ -102,21 +99,8 @@ if (scrollItems.value.length) {
 
 .highlight { color: #ff0066; }
 
-.subtitle {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: rgba(0, 238, 255, 0.7);
-  margin-top: 10px;
-  max-width: 500px;
-  padding: 12px 18px;
-  background: rgba(0, 238, 255, 0.03);
-  border-left: 2px solid rgba(0, 238, 255, 0.4);
-}
-
 .items-list {
-  margin-top: 12px;
+  margin-top: 3px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -126,29 +110,31 @@ if (scrollItems.value.length) {
   font-family: 'Orbitron', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(119, 119, 119, 0.8);
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, opacity 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
+  opacity: 0.4;
 }
 
 .scroll-item:hover {
-  color: #00eeff; /* hover azul */
+  color: #00eeff;
+  opacity: 1;
 }
 
-/* Item ativo */
 .scroll-item.active {
-  color: #ff0066; /* rosa quando ativo */
+  color: #ff0066;
+  opacity: 1;
 }
 
 .icon {
   font-size: 1.2rem;
-  color: #0ff; /* ciano */
+  color: #0ff;
 }
 
 .typing-text {
@@ -157,7 +143,7 @@ if (scrollItems.value.length) {
   font-size: 0.85rem;
   font-weight: 500;
   color: rgba(0, 238, 255, 0.8);
-  min-height: 24px; /* mantém espaço mesmo sem texto */
+  min-height: 24px;
   white-space: pre-wrap;
 }
 </style>
