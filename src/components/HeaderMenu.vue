@@ -19,7 +19,7 @@
         </li>
 
         <li>
-          <router-link to="/Contact">Contact Me</router-link>
+          <router-link to="/ContactMe">Contact Me</router-link>
         </li>
 
         <li>
