@@ -8,7 +8,7 @@ import Download from '../views/Download.vue';
 
 const routes = [
   {
-    path: '/Home',
+    path: '/',
     component: Home
   },
   {

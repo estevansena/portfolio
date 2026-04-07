@@ -36,7 +36,7 @@
 import { ref } from 'vue'
 
 const menuItems = [
-  { path: '/Home', label: 'Home' },
+  { path: '/', label: 'Home' },
   { path: '/Projects', label: 'Projects' },
   { path: '/TechStack', label: 'Tech Stack' },
   { path: '/About', label: 'About' },
