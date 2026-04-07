@@ -2,13 +2,12 @@
   <div class="page">
     <div class="content">
       <SectionTitle 
-        firstName="Down" 
-        lastName="load" 
+        :firstName="titles.firstName" 
+        :lastName="titles.lastName" 
+        page="download"
       />
       <BodyMenu 
-        :items="[
-          { label: 'Digital Business Card', description: 'Faça o download do meu Digital Business Card' },
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -17,12 +16,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch, computed } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 
-const currentDescription = ref('Faça o download do meu Digital Business Card')
+const currentLang = inject("currentLang")
+
+const titles = computed(() => translations[currentLang.value].titles.download)
+
+const menuItems = ref([
+  { label: 'Digital Business Card', description: translations[currentLang.value].download.digitalCard }
+])
+
+const currentDescription = ref(menuItems.value[0].description)
+
+watch(currentLang, () => {
+  menuItems.value = [
+    { label: 'Digital Business Card', description: translations[currentLang.value].download.digitalCard }
+  ]
+  currentDescription.value = menuItems.value[0].description
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description

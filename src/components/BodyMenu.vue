@@ -68,6 +68,20 @@ function setActive(index) {
   color: #00eeff;
 }
 
+/* Light mode */
+body:not(.dark) .item {
+  color: rgb(0, 0, 0);
+}
+
+body:not(.dark) .item:hover,
+body:not(.dark) .item.active {
+  color: #ff0066;
+}
+
+body:not(.dark) .icon {
+  color: #000;
+}
+
 @media (max-width: 1024px) {
   .item {
     font-size: 0.75rem;

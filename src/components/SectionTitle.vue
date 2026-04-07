@@ -1,13 +1,33 @@
 <template>
   <h1 class="title">
-    {{ firstName }}<span class="highlight">{{ lastName }}</span>
+    {{ displayFirstName }}<span class="highlight">{{ displayLastName }}</span>
   </h1>
 </template>
 
 <script setup>
-defineProps({
+import { ref, inject, watch, computed } from "vue"
+import { translations } from "../i18n/translations"
+
+const props = defineProps({
   firstName: { type: String, default: '' },
-  lastName: { type: String, default: '' }
+  lastName: { type: String, default: '' },
+  page: { type: String, default: '' } // 'projects', 'techStack', 'about', 'contactMe', 'download'
+})
+
+const currentLang = inject("currentLang", ref('pt'))
+
+const displayFirstName = computed(() => {
+  if (props.page && translations[currentLang.value]?.titles?.[props.page]) {
+    return translations[currentLang.value].titles[props.page].firstName
+  }
+  return props.firstName
+})
+
+const displayLastName = computed(() => {
+  if (props.page && translations[currentLang.value]?.titles?.[props.page]) {
+    return translations[currentLang.value].titles[props.page].lastName
+  }
+  return props.lastName
 })
 </script>
 
@@ -21,12 +41,15 @@ defineProps({
   text-transform: uppercase;
   letter-spacing: 4px;
   color: #fff;
+  -webkit-text-stroke: 1px #fff;
   line-height: 1.1;
   margin: 0;
+  display: block;
 }
 
 .highlight {
   color: #ff0066;
+  -webkit-text-stroke: 0;
 }
 
 @media (max-width: 1024px) {
@@ -46,5 +69,18 @@ defineProps({
   .title {
     letter-spacing: 1px;
   }
+}
+</style>
+
+<style>
+/* Light mode - não scoped para funcionar */
+body:not(.dark) .title {
+  color: #000 !important;
+  -webkit-text-stroke: 1px #000 !important;
+}
+
+body:not(.dark) .title .highlight {
+  color: #ff0066 !important;
+  -webkit-text-stroke: 0 !important;
 }
 </style>

@@ -2,15 +2,12 @@
   <div class="page">
     <div class="content">
       <SectionTitle 
-        firstName="Ab" 
-        lastName="out" 
+        :firstName="titles.firstName" 
+        :lastName="titles.lastName" 
+        page="about"
       />
       <BodyMenu 
-        :items="[
-          { label: 'Projetos', description: 'Aqui ficam todos meus projetos em andamento' },
-          { label: 'Skills', description: 'Minhas habilidades em desenvolvimento e design' },
-          { label: 'Contato', description: 'Como me encontrar e enviar mensagens' }
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -19,12 +16,32 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch, computed } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 
-const currentDescription = ref('Aqui ficam todos meus projetos em andamento')
+const currentLang = inject("currentLang")
+
+const titles = computed(() => translations[currentLang.value].titles.about)
+
+const menuItems = ref([
+  { label: 'Projetos', description: translations[currentLang.value].about.projects },
+  { label: 'Skills', description: translations[currentLang.value].about.skills },
+  { label: 'Contato', description: translations[currentLang.value].about.contact }
+])
+
+const currentDescription = ref(menuItems.value[0].description)
+
+watch(currentLang, () => {
+  menuItems.value = [
+    { label: 'Projetos', description: translations[currentLang.value].about.projects },
+    { label: 'Skills', description: translations[currentLang.value].about.skills },
+    { label: 'Contato', description: translations[currentLang.value].about.contact }
+  ]
+  currentDescription.value = menuItems.value[0].description
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description

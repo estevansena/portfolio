@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ light: isLight }">
     <button 
       class="hamburger"
       :class="{ active: isOpen }"
@@ -13,7 +13,7 @@
 
     <nav class="nav-desktop">
       <router-link v-for="item in menuItems" :key="item.path" :to="item.path">
-        {{ item.label }}
+        {{ getLabel(item.key) }}
       </router-link>
     </nav>
 
@@ -25,7 +25,7 @@
           :to="item.path"
           @click="closeMenu"
         >
-          {{ item.label }}
+          {{ getLabel(item.key) }}
         </router-link>
       </nav>
     </div>
@@ -33,18 +33,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, inject, computed } from 'vue'
+import { translations } from '../i18n/translations'
+
+const currentLang = inject("currentLang")
 
 const menuItems = [
-  { path: '/', label: 'Home' },
-  { path: '/Projects', label: 'Projects' },
-  { path: '/TechStack', label: 'Tech Stack' },
-  { path: '/About', label: 'About' },
-  { path: '/ContactMe', label: 'Contact Me' },
-  { path: '/Download', label: 'Download' }
+  { path: '/', key: 'menu.home' },
+  { path: '/Projects', key: 'menu.projects' },
+  { path: '/TechStack', key: 'menu.techStack' },
+  { path: '/About', key: 'menu.about' },
+  { path: '/ContactMe', key: 'menu.contactMe' },
+  { path: '/Download', key: 'menu.download' }
 ]
 
+function getLabel(key) {
+  const keys = key.split('.')
+  return translations[currentLang.value][keys[0]][keys[1]]
+}
+
 const isOpen = ref(false)
+const isLight = ref(false)
 
 function toggleMenu() {
   isOpen.value = !isOpen.value
@@ -55,6 +64,15 @@ function closeMenu() {
   isOpen.value = false
   document.body.style.overflow = ''
 }
+
+onMounted(() => {
+  isLight.value = !document.body.classList.contains("dark")
+  
+  const observer = new MutationObserver(() => {
+    isLight.value = !document.body.classList.contains("dark")
+  })
+  observer.observe(document.body, { attributes: true, attributeFilter: ["class"] })
+})
 </script>
 
 <style scoped>
@@ -184,6 +202,42 @@ function closeMenu() {
 .nav-mobile a:hover {
   color: #ff0066;
   text-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
+}
+
+/* LIGHT MODE */
+.header.light .hamburger span {
+  background: #000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.header.light .nav-desktop a {
+  color: #000;
+}
+
+.header.light .nav-desktop .router-link-active {
+  color: #ff0066;
+  text-shadow: 0 0 10px rgba(255, 0, 102, 0.8);
+}
+
+.header.light .nav-desktop a:hover {
+  color: #ff0066;
+}
+
+.header.light .nav-mobile {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.header.light .nav-mobile a {
+  color: #000;
+}
+
+.header.light .nav-mobile .router-link-active {
+  color: #ff0066;
+  text-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
+}
+
+.header.light .nav-mobile a:hover {
+  color: #ff0066;
 }
 
 /* Tablet */

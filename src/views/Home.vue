@@ -6,9 +6,7 @@
         lastName="Sena" 
       />
       <BodyMenu 
-        :items="[
-          { label: 'Frontend Developer | UX Designer', description: 'Hello, World!' },
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -17,12 +15,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 
-const currentDescription = ref('Hello, World!')
+const currentLang = inject("currentLang")
+
+const menuItems = [
+  { label: translations[currentLang.value].home.subtitle, description: translations[currentLang.value].home.greeting }
+]
+
+const currentDescription = ref(menuItems[0].description)
+
+watch(currentLang, () => {
+  menuItems[0] = { 
+    label: translations[currentLang.value].home.subtitle, 
+    description: translations[currentLang.value].home.greeting 
+  }
+  currentDescription.value = translations[currentLang.value].home.greeting
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description

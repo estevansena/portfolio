@@ -2,17 +2,12 @@
   <div class="page">
     <div class="content">
       <SectionTitle 
-        firstName="Tech " 
-        lastName="Stack" 
+        :firstName="titles.firstName" 
+        :lastName="titles.lastName" 
+        page="techStack"
       />
       <BodyMenu 
-        :items="[
-          { icon: faVuejs, label: 'Vue.js', description: 'Vue.js é um framework progressivo de JavaScript para construir interfaces de usuário reativas e componentes interativos' },
-          { icon: faNodeJs, label: 'Node.js', description: 'Node.js é um ambiente de execução de JavaScript no lado do servidor, permitindo criar aplicações web escaláveis e de alta performance' },
-          { icon: faHtml5, label: 'HTML', description: 'HTML (HyperText Markup Language) é a linguagem de marcação usada para estruturar o conteúdo de páginas na web' },
-          { icon: faCss, label: 'CSS', description: 'CSS (Cascading Style Sheets) é a linguagem usada para estilizar e definir a aparência visual de páginas HTML na web' },
-          { icon: faJsSquare, label: 'JavaScript', description: 'JavaScript é a linguagem que permite tornar páginas web interativas e dinâmicas' }
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -21,13 +16,37 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch, computed } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 import { faCss, faHtml5, faJsSquare, faNodeJs, faVuejs } from '@fortawesome/free-brands-svg-icons'
 
-const currentDescription = ref('Vue.js é um framework progressivo de JavaScript para construir interfaces de usuário reativas e componentes interativos')
+const currentLang = inject("currentLang")
+
+const titles = computed(() => translations[currentLang.value].titles.techStack)
+
+const menuItems = ref([
+  { icon: faVuejs, label: 'Vue.js', description: translations[currentLang.value].techStack.vue },
+  { icon: faNodeJs, label: 'Node.js', description: translations[currentLang.value].techStack.node },
+  { icon: faHtml5, label: 'HTML', description: translations[currentLang.value].techStack.html },
+  { icon: faCss, label: 'CSS', description: translations[currentLang.value].techStack.css },
+  { icon: faJsSquare, label: 'JavaScript', description: translations[currentLang.value].techStack.javascript }
+])
+
+const currentDescription = ref(menuItems.value[0].description)
+
+watch(currentLang, () => {
+  menuItems.value = [
+    { icon: faVuejs, label: 'Vue.js', description: translations[currentLang.value].techStack.vue },
+    { icon: faNodeJs, label: 'Node.js', description: translations[currentLang.value].techStack.node },
+    { icon: faHtml5, label: 'HTML', description: translations[currentLang.value].techStack.html },
+    { icon: faCss, label: 'CSS', description: translations[currentLang.value].techStack.css },
+    { icon: faJsSquare, label: 'JavaScript', description: translations[currentLang.value].techStack.javascript }
+  ]
+  currentDescription.value = menuItems.value[0].description
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description

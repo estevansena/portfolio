@@ -2,15 +2,12 @@
   <div class="page">
     <div class="content">
       <SectionTitle 
-        firstName="Pro" 
-        lastName="jects" 
+        :firstName="titles.firstName" 
+        :lastName="titles.lastName" 
+        page="projects"
       />
       <BodyMenu 
-        :items="[
-          { label: 'Json Editor', description: 'Minhas habilidades em desenvolvimento e design' },
-          { label: 'Video Downloader', description: 'Como me encontrar e enviar mensagens' },
-          { label: 'Portfolio', description: 'Como me encontrar e enviar mensagens' }
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -19,12 +16,32 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch, computed } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 
-const currentDescription = ref('Minhas habilidades em desenvolvimento e design')
+const currentLang = inject("currentLang")
+
+const titles = computed(() => translations[currentLang.value].titles.projects)
+
+const menuItems = ref([
+  { label: 'Json Editor', description: translations[currentLang.value].projects.jsonEditor },
+  { label: 'Video Downloader', description: translations[currentLang.value].projects.videoDownloader },
+  { label: 'Portfolio', description: translations[currentLang.value].projects.portfolio }
+])
+
+const currentDescription = ref(menuItems.value[0].description)
+
+watch(currentLang, () => {
+  menuItems.value = [
+    { label: 'Json Editor', description: translations[currentLang.value].projects.jsonEditor },
+    { label: 'Video Downloader', description: translations[currentLang.value].projects.videoDownloader },
+    { label: 'Portfolio', description: translations[currentLang.value].projects.portfolio }
+  ]
+  currentDescription.value = menuItems.value[0].description
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description

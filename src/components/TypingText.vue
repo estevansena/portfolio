@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 
 const props = defineProps({
   text: { type: String, default: '' },
@@ -11,10 +11,19 @@ const props = defineProps({
 })
 
 const displayedText = ref('')
-let typingTimeout
+let typingTimeout = null
 
 function typeChar(text) {
-  clearTimeout(typingTimeout)
+  if (typingTimeout) {
+    clearTimeout(typingTimeout)
+    typingTimeout = null
+  }
+  
+  if (!text) {
+    displayedText.value = ''
+    return
+  }
+  
   displayedText.value = ''
   let index = 0
 
@@ -29,13 +38,17 @@ function typeChar(text) {
   type()
 }
 
-watch(() => props.text, (newText) => {
-  if (newText) {
+watch(() => props.text, (newText, oldText) => {
+  if (newText !== oldText) {
     typeChar(newText)
-  } else {
-    displayedText.value = ''
   }
 }, { immediate: true })
+
+onUnmounted(() => {
+  if (typingTimeout) {
+    clearTimeout(typingTimeout)
+  }
+})
 
 defineExpose({ typeText: typeChar })
 </script>
@@ -51,6 +64,11 @@ defineExpose({ typeText: typeChar })
   min-height: 24px;
   white-space: pre-wrap;
   margin: 0;
+}
+
+/* Light mode */
+body:not(.dark) .typing-text {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 768px) {

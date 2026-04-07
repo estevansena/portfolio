@@ -1,11 +1,14 @@
 <template>
   <div class="app">
     <CanvasBackground />
+    
+    <div class="controls">
       <DarkModeSwitch />
+      <TranslateButton />
+    </div>
 
-        <div class="header-container">
-
-    <HeaderMenu />
+    <div class="header-container">
+      <HeaderMenu />
     </div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
@@ -16,9 +19,27 @@
 </template>
 
 <script setup>
+import { ref, provide, onMounted } from 'vue'
 import HeaderMenu from './components/HeaderMenu.vue'
 import CanvasBackground from './components/CanvasBackground.vue'
 import DarkModeSwitch from './components/DarkModeSwitch.vue'
+import TranslateButton from './components/TranslateButton.vue'
+
+const currentLang = ref('pt')
+const setLang = (lang) => {
+  currentLang.value = lang
+  localStorage.setItem('lang', lang)
+}
+
+provide('currentLang', currentLang)
+provide('setLang', setLang)
+
+onMounted(() => {
+  const savedLang = localStorage.getItem('lang')
+  if (savedLang) {
+    currentLang.value = savedLang
+  }
+})
 </script>
 
 <style>
@@ -26,6 +47,16 @@ import DarkModeSwitch from './components/DarkModeSwitch.vue'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
 }
 
 .header-container {

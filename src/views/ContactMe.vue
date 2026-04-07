@@ -2,16 +2,12 @@
   <div class="page">
     <div class="content">
       <SectionTitle 
-        firstName="Contact " 
-        lastName="Me" 
+        :firstName="titles.firstName" 
+        :lastName="titles.lastName" 
+        page="contactMe"
       />
       <BodyMenu 
-        :items="[
-          { label: 'Linkedin', description: 'Confira minhas informações profissionais' },
-          { label: 'Github', description: 'Confira meu repositório no Github' },
-          { label: 'Instagram', description: 'Siga-me no Instagram' },
-          { label: 'Twitter', description: 'Siga-me no Twitter' }
-        ]"
+        :items="menuItems"
         @select="onSelect"
       />
       <TypingText :text="currentDescription" />
@@ -20,12 +16,34 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, inject, watch, computed } from 'vue'
 import SectionTitle from '../components/SectionTitle.vue'
 import BodyMenu from '../components/BodyMenu.vue'
 import TypingText from '../components/TypingText.vue'
+import { translations } from '../i18n/translations'
 
-const currentDescription = ref('Confira minhas informações profissionais')
+const currentLang = inject("currentLang")
+
+const titles = computed(() => translations[currentLang.value].titles.contactMe)
+
+const menuItems = ref([
+  { label: 'Linkedin', description: translations[currentLang.value].contactMe.linkedin },
+  { label: 'Github', description: translations[currentLang.value].contactMe.github },
+  { label: 'Instagram', description: translations[currentLang.value].contactMe.instagram },
+  { label: 'Twitter', description: translations[currentLang.value].contactMe.twitter }
+])
+
+const currentDescription = ref(menuItems.value[0].description)
+
+watch(currentLang, () => {
+  menuItems.value = [
+    { label: 'Linkedin', description: translations[currentLang.value].contactMe.linkedin },
+    { label: 'Github', description: translations[currentLang.value].contactMe.github },
+    { label: 'Instagram', description: translations[currentLang.value].contactMe.instagram },
+    { label: 'Twitter', description: translations[currentLang.value].contactMe.twitter }
+  ]
+  currentDescription.value = menuItems.value[0].description
+}, { immediate: true })
 
 function onSelect(item) {
   currentDescription.value = item.description
