@@ -61,7 +61,7 @@ function closeMenu() {
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap');
 
 .header {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;

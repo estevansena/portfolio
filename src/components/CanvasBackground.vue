@@ -8,6 +8,9 @@ import { onMounted, onBeforeUnmount, ref } from "vue";
 const canvas = ref(null);
 let ctx, w, h;
 
+// 🔥 CONTROLE DO TEMA (ligar/desligar)
+const isDark = ref(true); // true = dark | false = light
+
 // CONFIG
 const mainParticles = [];
 const cornerParticles = [];
@@ -17,12 +20,27 @@ const CORNER_COUNT = 12;
 
 const MAX_DIST = 120;
 
-// CORES
-const CYAN = [0, 255, 255];
-const PINK = [255, 0, 102];
-
 let mouse = { x: -9999, y: -9999 };
 let animationFrame;
+
+// 🎨 FUNÇÃO DE CORES (AQUI É O SEGREDO)
+function getColors() {
+  if (isDark.value) {
+    return {
+      bg: "#000",
+      cyan: [0, 255, 255],
+      pink: [255, 0, 102],
+      composite: "lighter"
+    };
+  } else {
+    return {
+      bg: "#fff",
+      cyan: [0, 0, 0],
+      pink: [10, 10, 10],
+      composite: "source-over"
+    };
+  }
+}
 
 // resize
 function resize() {
@@ -30,7 +48,7 @@ function resize() {
   h = canvas.value.height = window.innerHeight;
 }
 
-// 🔥 LIMITE CURVO (ajuste fino aqui se quiser)
+// limite curvo
 function getLimitX(y) {
   const t = y / h;
   return w * (0.55 + 0.15 * Math.sin(t * Math.PI));
@@ -41,7 +59,6 @@ function init() {
   mainParticles.length = 0;
   cornerParticles.length = 0;
 
-  // direita (já nasce respeitando o limite)
   for (let i = 0; i < MAIN_COUNT; i++) {
     const y = Math.random() * h;
     const minX = getLimitX(y);
@@ -55,7 +72,6 @@ function init() {
     });
   }
 
-  // canto inferior esquerdo
   for (let i = 0; i < CORNER_COUNT; i++) {
     cornerParticles.push({
       x: Math.random() * (w * 0.12),
@@ -67,7 +83,7 @@ function init() {
   }
 }
 
-// update MAIN com limite curvo
+// update MAIN
 function updateMain(group) {
   group.forEach(p => {
     p.x += p.vx;
@@ -75,7 +91,6 @@ function updateMain(group) {
 
     const limitX = getLimitX(p.y);
 
-    // respeita curva
     if (p.x < limitX) {
       p.x = limitX;
       p.vx *= -1;
@@ -104,7 +119,7 @@ function update(group, bounds) {
 }
 
 // linhas
-function drawLines(group) {
+function drawLines(group, colors) {
   for (let i = 0; i < group.length; i++) {
     for (let j = i + 1; j < group.length; j++) {
       const dx = group[i].x - group[j].x;
@@ -113,7 +128,10 @@ function drawLines(group) {
 
       if (dist < MAX_DIST) {
         const alpha = 1 - dist / MAX_DIST;
-        const color = (group[i].t + group[j].t) / 2 > 0.7 ? PINK : CYAN;
+        const color =
+          (group[i].t + group[j].t) / 2 > 0.7
+            ? colors.pink
+            : colors.cyan;
 
         ctx.beginPath();
         ctx.strokeStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha * 0.6})`;
@@ -130,9 +148,9 @@ function drawLines(group) {
 }
 
 // pontos
-function drawPoints(group) {
+function drawPoints(group, colors) {
   group.forEach(p => {
-    const color = p.t > 0.7 ? PINK : CYAN;
+    const color = p.t > 0.7 ? colors.pink : colors.cyan;
 
     const dx = p.x - mouse.x;
     const dy = p.y - mouse.y;
@@ -152,10 +170,12 @@ function drawPoints(group) {
 
 // loop
 function draw() {
-  ctx.fillStyle = "#000";
+  const colors = getColors();
+
+  ctx.fillStyle = colors.bg;
   ctx.fillRect(0, 0, w, h);
 
-  ctx.globalCompositeOperation = "lighter";
+  ctx.globalCompositeOperation = colors.composite;
 
   updateMain(mainParticles);
 
@@ -166,11 +186,11 @@ function draw() {
     maxY: h
   });
 
-  drawLines(mainParticles);
-  drawLines(cornerParticles);
+  drawLines(mainParticles, colors);
+  drawLines(cornerParticles, colors);
 
-  drawPoints(mainParticles);
-  drawPoints(cornerParticles);
+  drawPoints(mainParticles, colors);
+  drawPoints(cornerParticles, colors);
 
   ctx.globalCompositeOperation = "source-over";
 
@@ -194,6 +214,16 @@ onMounted(() => {
     mouse.y = e.clientY;
   });
 
+  // 🔥 OBSERVA MUDANÇAS NO BODY
+  const observer = new MutationObserver(() => {
+    isDark.value = document.body.classList.contains("dark");
+  });
+  
+  observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+  // Verifica tema inicial
+  isDark.value = document.body.classList.contains("dark");
+
   draw();
 });
 
@@ -207,7 +237,6 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  background: #000;
   z-index: -1;
   pointer-events: none;
 }
