@@ -38,7 +38,7 @@ const setLang = inject("setLang");
 
 .pt.active, .en.active {
   color: #00eeff;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* Light mode */

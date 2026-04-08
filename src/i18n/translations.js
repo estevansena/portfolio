@@ -14,9 +14,9 @@ export const translations = {
     },
     projects: {
       title: 'Projetos',
-      jsonEditor: 'Minhas habilidades em desenvolvimento e design',
-      videoDownloader: 'Como me encontrar e enviar mensagens',
-      portfolio: 'Meu portfólio'
+      jsonEditor: 'Editor de arquivos JSON via formulários',
+      videoDownloader: 'Downloader de vídeos, audios e thumbnails',
+      portfolio: 'Diretório deste portfólio'
     },
     techStack: {
       title: 'Tech Stack',
@@ -66,9 +66,9 @@ export const translations = {
     },
     projects: {
       title: 'Projects',
-      jsonEditor: 'My skills in development and design',
-      videoDownloader: 'How to find me and send messages',
-      portfolio: 'My portfolio'
+      jsonEditor: 'JSON file editor via forms',
+      videoDownloader: 'Video, audio, and thumbnail downloader',
+      portfolio: 'Repository for this portfolio'
     },
     techStack: {
       title: 'Tech Stack',
